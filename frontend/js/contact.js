@@ -25,7 +25,7 @@ nvRight.forEach((link)=>{
     });
 });
 
-// scroll up (topBtn)
+// scroll to top button
 const topBtn = document.querySelector("#topBtn");
 
 window.onscroll = function(){
@@ -43,3 +43,26 @@ topBtn.onclick = function(){
         behavior: "smooth"
     });
 }
+
+// form input hover
+const form = document.querySelector("form");
+
+form.addEventListener("click",(e)=>{
+    e.stopPropagation();
+    form.classList.add("active");
+});
+
+document.addEventListener("click",()=>{
+    form.classList.remove("active");
+});
+
+// faqs section
+const faqItems = document.querySelectorAll(".faq-item");
+
+faqItems.forEach((item)=>{
+    const question = item.querySelector(".faq-question");
+
+    question.addEventListener("click",()=>{
+        item.classList.toggle("active");
+    });
+});

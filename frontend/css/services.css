@@ -2,11 +2,19 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+html{
+    scroll-behavior: smooth;
+}
+
 body {
     margin-left: 0;
     margin-right: 0;
     margin-top: 0;
     margin-bottom: 0;
+}
+
+.gapping {
+    margin: 5%;
 }
 
 .navTop{
@@ -51,29 +59,9 @@ body {
     margin-right: 3%;
 }
 
-header h3{
-    margin-top: 8%;
-    margin-left: 4%;
-    font-weight: 600;
-    font-size: large;
-    color: #2D3748;
-}
-
-.mainContent{
-    margin-top: 4%;
-    margin-left: 4%;
-    margin-right: 4%;
-    margin-bottom: 4%;
-    font-size: small;
-    color: #2D3748;
-}
-
-.disclaimer{
-    color: red;
-}
 
 .footerBG {
-    background: url("../assests/footer.jpg");
+    background: url("/assests/footer.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -114,21 +102,6 @@ header h3{
 .helpfulLinks h3{
     font-size: small;
 }
-
-#topBtn{
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    display: none;
-    padding: 12px 16px;
-    font-size: 20px;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    background-color: #578fe4;
-    color: white;
-}
-
 
 .menuIcon{
     display: none;
@@ -214,13 +187,6 @@ span:nth-child(3){
 }
 
 @media (max-width: 664px){
-    header h3{
-        margin-top: 18%;
-        font-size: small;
-    }
-    .mainContent{
-        font-size: x-small;
-    }
     .footerBG{
         height: 100%;
     }
