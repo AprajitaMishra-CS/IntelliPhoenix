@@ -83,6 +83,11 @@ h2{
     word-spacing: 12px;
 }
 
+h4{
+    text-align: center;
+    color: navy;
+}
+
 .form h3{
     text-align: center;
     color: rgb(58, 58, 172);
@@ -134,7 +139,7 @@ h2{
     background-color: rgb(12, 130, 240);
     color: white;
     height: 30px;
-    width: 120px;
+    width: 145px;
     border-radius: 15px;
     border: 1px solid grey;
     box-shadow: 2px 2px 8px grey;
@@ -152,6 +157,21 @@ h2{
     align-items: center;
     gap: 12px;
     margin-top: 20px;
+}
+
+.pswd{
+    border: none;
+    background: none;
+    margin-left: 85%;
+}
+
+form p{
+    font-size: x-small;
+}
+
+.successMsg{
+    text-align: center;
+    font-size: medium;
 }
 
 .divider{
@@ -300,7 +320,7 @@ span:nth-child(3){
     .form{
         width: 100%;
     }
-    .formCon, .contact{
+    .formCon{
         width: 100%;
         flex: 100%;
         margin-bottom: 45px;

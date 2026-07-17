@@ -66,3 +66,19 @@ faqItems.forEach((item)=>{
         item.classList.toggle("active");
     });
 });
+
+// btn loading & success msg
+const btn = document.querySelector(".btn");
+
+btn.addEventListener("click", function(){
+    btn.innerHTML = "Sending Message...";
+    btn.disabled = true;
+
+    setTimeout(function(){
+        btn.innerHTML = "Send Message";
+        btn.disabled = false;
+
+        document.getElementById("successMsg").innerHTML = "<i class=\"fa-solid fa-check-double\"></i> Message Sent Successfully !!";
+        document.getElementById("successMsg").style.color = "green";
+    },2000);
+});
