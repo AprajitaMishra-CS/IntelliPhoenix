@@ -89,6 +89,7 @@ header h4{
 
 .card p{
     font-size: small;
+    color: rgb(59, 59, 138);
 }
 
 .card:hover {
@@ -105,10 +106,6 @@ header h4{
 
 .card h5{
     color: navy;
-}
-
-.card p {
-    color: rgb(59, 59, 138);
 }
 
 .disclaimer{
