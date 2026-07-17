@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="icon" href="assests/logo.png">
+    <title>Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="navTop">
+        <div class="navLeft">
+            <img src="assests/logo.png">
+        </div>
+        <div class="menuIcon" id="menuIcon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul class="navRight">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="services.html">Services</a>
+            <a href="contact.html">Contact</a>
+            <a href="login.html">Login</a>
+            <a href="register.html">Register</a>
+        </ul>
+    </nav>
+
+    <div class="overlay" id="overlay"></div>
+
+    <div class="gapping"></div>
+    
+    <main class="mainContent">
+        <section class="formCon">
+            <h2>WELCOME BACK !!</h2>
+
+            <div class="gapping"></div>
+    
+            <form action="" class="form">
+                <h3>LOGIN FORM</h3>
+                <div class="formInner">
+                    <label for="email">
+                        <i class="fa-regular fa-envelope"></i> Email:
+                        <input type="email" placeholder="Enter your email address" class="input" id="email" name="email">
+                    </label>
+                    <br><br>
+                    <label for="subject">
+                        <i class="fa-solid fa-lock"></i> Password:
+                        <input type="password" placeholder="Enter password" class="input" id="pswd" name="pswd">
+                        <a href="">Forget Password?</a>
+                    </label>
+                    <br><br>
+                    <input type="checkbox" name="terms" id="terms" checked/>
+                    <label for="terms">Remember Me</label>
+                    <br>
+                    <div class="btns">
+                        <button type="submit" class="btn">Login &rightarrow;</button>
+                    </div>
+                    <div class="divider">
+                        <div class="hrTag"><hr></div>
+                        <span>OR</span>
+                        <div class="hrTag"><hr></div>
+                    </div>
+                    <div class="optionals">
+                        <button class="option"><i class="fa-brands fa-google"></i> Continue with Google</button>
+                        <h4>Don't have an account? <a href="register.html">Register</a></h4>
+                    </div>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <div class="gapping"></div>
+
+    <script src="js/login.js"></script>
+</body>
+</html>
