@@ -246,7 +246,7 @@ textarea:focus{
 }
 
 .contact{
-    height: fit-content;
+    height: 428px;
     width: 100%;
     border: 1px solid black;
     border-radius: 18px;
