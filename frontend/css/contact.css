@@ -1,5 +1,6 @@
 *{
     font-family: Arial, Helvetica, sans-serif;
+    margin-bottom: 0;
 }
 
 html{
@@ -317,7 +318,7 @@ textarea:focus{
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    height: 250px;
+    height: 300px;
 }
 
 .footerContent {
@@ -353,6 +354,15 @@ textarea:focus{
 
 .helpfulLinks h3{
     font-size: small;
+}
+
+.copyright{
+    height: 20%;
+    text-align: center;
+    color: white;
+    font-size: small;
+    margin-bottom: 24px;
+    /* margin: 0; */
 }
 
 #topBtn{
@@ -453,6 +463,9 @@ span:nth-child(3){
 }
 
 @media (max-width: 664px){
+    .copyright{
+        margin: 0;
+    }
     .footerBG{
         height: 100%;
     }
@@ -467,17 +480,33 @@ span:nth-child(3){
         padding: 5%;
         gap: 20px;
     }
+    .helpfulLinks, .iconAndtagline {
+        margin-top: 6px;
+        margin-bottom: 6px;
+    }
+    .iconAndtagline h5{
+        margin-bottom: 6px;
+    }
 }
 
 @media (min-width:390px) and (max-width:640px){
     .bannerHeading{
-        font-size: 60px;
+        font-size: 45px;
+        word-spacing: normal;
     }
     .desc{
         font-size: 18px;
     }
 }
 
+@media (max-width: 348px){
+    .bannerHeading{
+        font-size: 50px;
+    }
+    .desc{
+        font-size: 16px;
+    }
+}
 
 @media (max-width:390px){
     .bannerHeading{

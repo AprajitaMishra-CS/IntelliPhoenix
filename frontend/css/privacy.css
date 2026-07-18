@@ -1,5 +1,6 @@
 *{
     font-family: Arial, Helvetica, sans-serif;
+    margin-bottom: 0;
 }
 
 html{
@@ -120,7 +121,7 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    height: 250px;
+    height: 300px;
 }
 
 .footerContent {
@@ -157,6 +158,16 @@ body {
 .helpfulLinks h3{
     font-size: small;
 }
+
+.copyright{
+    height: 20%;
+    text-align: center;
+    color: white;
+    font-size: small;
+    margin-bottom: 24px;
+    /* margin: 0; */
+}
+
 
 .menuIcon{
     display: none;
@@ -242,6 +253,13 @@ span:nth-child(3){
 }
 
 @media (max-width: 664px){
+    .mainContent{
+        margin-top: 15%;
+    }
+
+    .copyright{
+        margin: 0;
+    }
     .footerBG{
         height: 100%;
     }
@@ -254,5 +272,12 @@ span:nth-child(3){
         margin-left: 25%;
         margin-right: 30%;
         padding: 5%;
+    }
+    .helpfulLinks, .iconAndtagline {
+        margin-top: 6px;
+        margin-bottom: 6px;
+    }
+    .iconAndtagline h5{
+        margin-bottom: 6px;
     }
 }

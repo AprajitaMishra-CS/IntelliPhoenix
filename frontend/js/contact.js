@@ -82,3 +82,8 @@ btn.addEventListener("click", function(){
         document.getElementById("successMsg").style.color = "green";
     },2000);
 });
+
+// copyright year
+const copyrightYear = document.querySelector(".copyright p");
+const currentYear = new Date().getFullYear();
+copyrightYear.innerHTML = `Copyright &copy; ${currentYear}`;

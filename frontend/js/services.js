@@ -42,4 +42,9 @@ topBtn.onclick = function(){
         top: 0,
         behavior: "smooth"
     });
-}
+};
+
+// copyright year
+const copyrightYear = document.querySelector(".copyright p");
+const currentYear = new Date().getFullYear();
+copyrightYear.innerHTML = `Copyright &copy; ${currentYear}`;
