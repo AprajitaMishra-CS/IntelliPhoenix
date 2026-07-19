@@ -98,5 +98,6 @@ btn.addEventListener("click", function(){
 
         document.getElementById("successMsg").innerHTML = "<i class=\"fa-solid fa-check-double\"></i> Registeration Successful !!";
         document.getElementById("successMsg").style.color = "green";
+        alert("Registered Successfully !!");
     },2000);
 });
