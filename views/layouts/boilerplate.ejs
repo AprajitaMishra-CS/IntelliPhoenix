@@ -11,8 +11,9 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <link rel="stylesheet" href="/css/index.css">
     <% if(style) { %>
-      <link rel="stylesheet" href="css/<%= style %>.css">
+      <link rel="stylesheet" href="/css/<%= style %>.css">
     <% } %>
     <link rel="icon" href="assests/logo.png" />
     <title>IntelliPhoenix</title>
@@ -26,6 +27,6 @@
   <body>
     <%- include("../includes/navbar.ejs") %>
     <div class="container"><%- body %></div>
-    <%- include("../includes/footer.ejs");
+    <%- include("../includes/footer.ejs") %>;
   </body>
 </html>

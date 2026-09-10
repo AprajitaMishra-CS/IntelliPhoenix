@@ -266,12 +266,19 @@ body {
     color: rgb(73, 69, 69);
 }
 
+footer{
+    display: block;
+    margin: 0;
+    padding-bottom: 0;
+}
+
 .footerBG {
     background: url("../assests/footer.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     height: 300px;
+    margin: 0;
 }
 
 .footerContent {

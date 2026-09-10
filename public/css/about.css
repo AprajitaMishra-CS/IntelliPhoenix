@@ -42,6 +42,10 @@ body {
     margin-right: 40px;
 }
 
+.navRight li{
+    list-style: none;
+}
+
 .navRight a{
     text-decoration: none;
     color: grey;
