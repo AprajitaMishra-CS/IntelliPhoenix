@@ -1,116 +1,149 @@
-<% layout("/layouts/boilerplate") %>
-<% style="contact" %>
-    
-    <header class="banner">
-        <p class="bannerHeading">GET IN TOUCH</p>
-        <p class="desc">We're here to help you with your healthcare journey.</p>
-    </header>
+<% layout("/layouts/boilerplate") %> <% style="contact" %>
 
-    <div class="gapping"></div>
+<header class="banner">
+  <p class="bannerHeading">GET IN TOUCH</p>
+  <p class="desc">We're here to help you with your healthcare journey.</p>
+</header>
 
-    <button id="topBtn">&uparrow;</button>
-    
-    <main class="mainContent">
-        <section class="formCon">
-            <form action="" class="form">
-                <h3>Form</h3>
-                <div class="formInner">
-                    <label for="name">
-                        Name:
-                        <input type="text" placeholder="Enter your full name" class="input" id="name" name="name">
-                    </label>
-                    <div class="samePart">
-                        <label for="email">
-                            Email Address:
-                            <input type="email" placeholder="Enter your email address" class="input" id="email" name="email">
-                        </label>
-                        <label for="number">
-                            Phone Number:
-                            <input type="text" placeholder="Enter your phone number" class="input" id="number" name="number"> 
-                        </label>
-                    </div>
-                    <label for="subject">
-                        Subject:
-                        <input type="text" placeholder="Subject" class="input" id="subject" name="subject">
-                    </label>
-                    <br><br>
-                    <label for="message">
-                        Message:
-                        <br>
-                        <textarea placeholder="Write Message..." class="textarea" id="message" name="message"></textarea>
-                    </label>
-                    <br>
-                    <input type="checkbox" name="terms" id="terms" checked/>
-                    <label for="terms">I agree the terms &amp; conditions.</label>
-                    <br>
-                    <div class="btns">
-                        <button type="reset" class="btnR">Reset</button>
-                        <button type="submit" class="btn">Submit</button>
-                    </div>
-                    <p class="successMsg" id="successMsg"></p>
-                </div>
-            </form>
-        </section>
+<div class="gapping"></div>
 
-        <section class="contact">
-            <h4><i class="fa-regular fa-envelope"></i>&nbsp; Email:</h4>
-            <p>supportintelliphoenix@gmail.com, support@intelliphoenix.com, intelliphoenix@support.com</p>
-            <div class="hrTag"><hr></div>
-            <h4><i class="fa-solid fa-phone"></i>&nbsp; Phone:</h4>
-            <p>+91 XXXXX XXXXX</p>
-            <div class="hrTag"><hr></div>
-            <h4><i class="fa-solid fa-location-dot"></i>&nbsp; Address:</h4>
-            <p>Gorakhpur, Uttar Pradesh, India</p>
-            <div class="hrTag"><hr></div>
-            <h4><i class="fa-solid fa-clock"></i>&nbsp; Working Hours</h4>
-            <p>Monday &dash; Saturday</p>
-            <p>9:00 AM &dash; 6:00 PM</p>
-        </section>
-    </main>
+<button id="topBtn">&uparrow;</button>
 
-    
-    <div class="gapping"></div>
-    <div class="hrTag"><hr></div>
-    <div class="gapping"></div>
-
-    <section class="faqs">
-        <h3>FAQs</h3>
-        <div class="faq-item">
-            <button class="faq-question">
-                What services do you provide ?
-            </button>
-            <div class="faq-answer">
-                <p>&rightarrow; We provide AI Chat to which give response such as Precautions, Severity Level, Doctor Recommendation and Reports.</p>
-            </div>
+<main class="mainContent">
+  <section class="formCon">
+    <form action="" class="form">
+      <h3>Form</h3>
+      <div class="formInner">
+        <label for="name">
+          Name:
+          <input
+            type="text"
+            placeholder="Enter your full name"
+            class="input"
+            id="name"
+            name="name"
+          />
+        </label>
+        <div class="samePart">
+          <label for="email">
+            Email Address:
+            <input
+              type="email"
+              placeholder="Enter your email address"
+              class="input"
+              id="email"
+              name="email"
+            />
+          </label>
+          <label for="number">
+            Phone Number:
+            <input
+              type="text"
+              placeholder="Enter your phone number"
+              class="input"
+              id="number"
+              name="number"
+            />
+          </label>
         </div>
-        <div class="faq-item">
-            <button class="faq-question">
-                How can I contact you ?
-            </button>
-            <div class="faq-answer">
-                <p>&rightarrow; You can contact us using the contact form or email us directly.</p>
-            </div>
+        <label for="subject">
+          Subject:
+          <input
+            type="text"
+            placeholder="Subject"
+            class="input"
+            id="subject"
+            name="subject"
+          />
+        </label>
+        <br /><br />
+        <label for="message">
+          Message:
+          <br />
+          <textarea
+            placeholder="Write Message..."
+            class="textarea"
+            id="message"
+            name="message"
+          ></textarea>
+        </label>
+        <br />
+        <input type="checkbox" name="terms" id="terms" checked />
+        <label for="terms">I agree the terms &amp; conditions.</label>
+        <br />
+        <div class="btns">
+          <button type="reset" class="btnR">Reset</button>
+          <button type="submit" class="btn">Submit</button>
         </div>
-        <div class="faq-item">
-            <button class="faq-question">
-                Is AI diagnosis accurate ?
-            </button>
-            <div class="faq-answer">
-                <p>&rightarrow; AI diagnosis is based on algorithms and data patterns. While it can provide insights, it's essential to consult a medical professional for accurate diagnosis.</p>
-            </div>
-        </div>
-        <div class="faq-item">
-            <button class="faq-question">
-                Can I cancel appointments ?
-            </button>
-            <div class="faq-answer">
-                <p>&rightarrow; Yes, you can cancel appointments by contacting our support team or using the cancellation button.</p>
-            </div>
-        </div>
-    </section>
+        <p class="successMsg" id="successMsg"></p>
+      </div>
+    </form>
+  </section>
 
-    <div class="gapping"></div>
+  <section class="contact">
+    <h4><i class="fa-regular fa-envelope"></i>&nbsp; Email:</h4>
+    <p>
+      supportintelliphoenix@gmail.com, support@intelliphoenix.com,
+      intelliphoenix@support.com
+    </p>
+    <div class="hrTag"><hr /></div>
+    <h4><i class="fa-solid fa-phone"></i>&nbsp; Phone:</h4>
+    <p>+91 XXXXX XXXXX</p>
+    <div class="hrTag"><hr /></div>
+    <h4><i class="fa-solid fa-location-dot"></i>&nbsp; Address:</h4>
+    <p>Gorakhpur, Uttar Pradesh, India</p>
+    <div class="hrTag"><hr /></div>
+    <h4><i class="fa-solid fa-clock"></i>&nbsp; Working Hours</h4>
+    <p>Monday &dash; Saturday</p>
+    <p>9:00 AM &dash; 6:00 PM</p>
+  </section>
+</main>
 
-    <script src="js/contact.js"></script>
-</body>
-</html>
+<div class="gapping"></div>
+<div class="hrTag"><hr /></div>
+<div class="gapping"></div>
+
+<section class="faqs">
+  <h3>FAQs</h3>
+  <div class="faq-item">
+    <button class="faq-question">What services do you provide ?</button>
+    <div class="faq-answer">
+      <p>
+        &rightarrow; We provide AI Chat to which give response such as
+        Precautions, Severity Level, Doctor Recommendation and Reports.
+      </p>
+    </div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-question">How can I contact you ?</button>
+    <div class="faq-answer">
+      <p>
+        &rightarrow; You can contact us using the contact form or email us
+        directly.
+      </p>
+    </div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-question">Is AI diagnosis accurate ?</button>
+    <div class="faq-answer">
+      <p>
+        &rightarrow; AI diagnosis is based on algorithms and data patterns.
+        While it can provide insights, it's essential to consult a medical
+        professional for accurate diagnosis.
+      </p>
+    </div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-question">Can I cancel appointments ?</button>
+    <div class="faq-answer">
+      <p>
+        &rightarrow; Yes, you can cancel appointments by contacting our support
+        team or using the cancellation button.
+      </p>
+    </div>
+  </div>
+</section>
+
+<div class="gapping"></div>
+
+<script src="js/contact.js"></script>
