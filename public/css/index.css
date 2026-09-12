@@ -835,14 +835,19 @@ span:nth-child(3){
 }
 
 @media (max-width: 768px) {
+    .heroSecLogo{
+        height: 250px;
+        width: fit-content;
+        margin-right: 40px;
+    }
     .heroSection {
         margin-top: 50px;
         min-height: auto;
         padding: 50px 20px 30px;
         height: 160vh;
+        width: fit-content;
     }
     .banner {
-        width: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;

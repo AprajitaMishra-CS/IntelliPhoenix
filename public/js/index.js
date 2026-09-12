@@ -42,8 +42,6 @@ counters.forEach((counter)=>{
         } else {
             if(target==95){
                 counter.innerText = target + "%";
-            } else if(target==2500){
-                counter.innerText = target + "K+";
             } else {
                 counter.innerText = target + "+";
             }
