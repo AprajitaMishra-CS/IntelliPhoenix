@@ -8,10 +8,8 @@ html{
 }
 
 body {
-    margin-left: 0;
-    margin-right: 0;
-    margin-top: 0;
-    margin-bottom: 0;
+    margin: 0;
+    background-color: rgb(227, 248, 255);
 }
 
 .gapping {
@@ -122,42 +120,63 @@ body {
     color: #16c7c1;
 }
 
-.hrTag{
-    margin-left: 3%;
-    margin-right: 3%;
-}
-
 header{
     margin-top: 10%;
+    text-align: center;
+    line-height: 0.5em;
 }
 
-header h4{
+.heading {
     margin: 3%;
-    color: #2D3748;
+    color: #000928;
+    font-size: 40px;
+    font-weight: 700;
+}
+
+.subheadLine {
+    color: #000928;
+    font-size: 16px;
+    font-weight: lighter;
+    line-height: 1.5em;
+}
+
+.mainContent {
+    margin: 0 80px;
+    background-color: rgb(227, 248, 255);
 }
 
 .firstCon {
     display: flex;
     flex-direction: row;
-    gap: 50px;
     align-content: center;
-    margin-top: 3%;
-    margin-bottom: 3%;
-    margin-left: 7%;
-    margin-right: 7%;
+    align-items: center;
+    justify-content: center;
+    gap: 80px;
+    margin-bottom: 20px;
 }
 
 .card {
-    width: 180px;
-    border: 2px solid black;
-    border-radius: 20px;
+    width: 200px;
+    /* border: 2px solid black; */
+    border-radius: 15px;
     text-align: center;
-    padding: 6px;
+    background-color: rgb(250, 250, 250);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-.card p{
-    font-size: small;
+.card .cardHeading{
+    color: #000928;
+    font-size: 17px;
+}
+
+.card .cardDesc{
+    font-size: 16px;
     color: rgb(59, 59, 138);
+    font-weight: lighter;
+    padding: 10px;
 }
 
 .card:hover {
@@ -166,20 +185,27 @@ header h4{
     transition: .3s;
 }
 
-.card-img {
-    height: 120px;
-    width: 100%;
-    border-radius: 1.1rem;
+.ImgDiv {
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    background-color: rgb(201, 242, 255);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.card h5{
-    color: navy;
+.card-img {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 .disclaimer{
-    margin: 4%;
+    margin-top: 3%;
+    margin-bottom: 3%;
     color: red;
-    font-size: small;
 }
 
 #topBtn{
@@ -195,13 +221,13 @@ header h4{
     background-color: #578fe4;
     color: white;
 }
-
 .footerBG {
     background: url("../assests/footer.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    height: 300px;
+    height: 400px;
+    margin: 0;
 }
 
 .footerContent {
@@ -212,19 +238,19 @@ header h4{
 }
 
 .iconAndtagline img{
-    height: 120px;
-    width: 120px;
+    height: 150px;
+    width: 150px;
 }
 
 .iconAndtagline h5{
     color: white;
-    font-size: small;
+    font-size: 16px;
 }
 
 .helpfulLinks a{
     color: white;
     text-decoration: none;
-    font-size: small;
+    font-size: 16px;
 }
 
 .helpfulLinks {
@@ -236,14 +262,14 @@ header h4{
 }
 
 .helpfulLinks h3{
-    font-size: small;
+    font-size: 16px;
 }
 
 .copyright{
     height: 20%;
     text-align: center;
     color: white;
-    font-size: small;
+    font-size: 16px;
     margin-bottom: 24px;
     /* margin: 0; */
 }
@@ -381,6 +407,6 @@ span:nth-child(3){
         gap: 50px;
     }
     .disclaimer{
-        font-size: x-small;
+        font-size: small;
     }
 }
