@@ -4,106 +4,141 @@
 
 <main class="mainContent">
   <section class="formCon">
-    <h2>&ast;CREATE YOUR ACCOUNT&ast;</h2>
-    <h4>Start your smart healthcare journey today</h4>
-
     <div class="gapping"></div>
 
     <form action="" method="" class="form">
-      <h3>REGISTRATION FORM</h3>
+      <div class="startForm">
+        <img src="assests/logo.png" class="formLogo" />
+        <h2>Create Your Account</h2>
+        <p class="subheading">Start your smart healthcare journey today</p>
+      </div>
       <div class="formInner">
-        <label for="name">
-          <i class="fa-regular fa-user"></i> Name:
-          <input
-            type="text"
-            placeholder="Enter your name"
-            class="input"
-            id="name"
-            name="name"
-            required
-          />
-        </label>
+        <label for="name"> <i class="fa-regular fa-user"></i> Name:</label>
+        <input
+          type="text"
+          placeholder="Enter your name"
+          class="input"
+          id="name"
+          name="name"
+          required
+        />
+
         <br /><br />
         <label for="email">
-          <i class="fa-regular fa-envelope"></i> Email:
-          <input
-            type="email"
-            placeholder="Enter your email address"
-            class="input"
-            id="email"
-            name="email"
-            required
-          />
-        </label>
+          <i class="fa-regular fa-envelope"></i> Email:</label
+        >
+        <input
+          type="email"
+          placeholder="Enter your email address"
+          class="input"
+          id="email"
+          name="email"
+          required
+        />
+
         <br /><br />
         <label for="number">
           <i class="fa-solid fa-phone"></i> Phone No:
-          <input
-            type="text"
-            placeholder="Enter your phone number"
-            class="input"
-            id="number"
-            name="number"
-            required
-          />
         </label>
+        <input
+          type="text"
+          placeholder="Enter your phone number"
+          class="input"
+          id="number"
+          name="number"
+          required
+        />
         <br /><br />
         <label for="dob">
           <i class="fa-solid fa-calendar"></i> Date of Birth:
           <input type="date" class="input" id="dob" name="dob" required />
         </label>
         <br /><br />
-        <label for="gender">
-          <i class="fa-solid fa-user"></i> Gender:
-          <select class="input" id="gender" name="gender" required>
-            <option value="">Select your gender</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="other">Other</option>
-          </select>
-        </label>
+        <label for="gender"> <i class="fa-solid fa-user"></i> Gender:</label>
+        <select class="input" id="gender" name="gender" required>
+          <option value="">Select your gender</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="other">Other</option>
+        </select>
+
         <br /><br />
-        <label for="role">
-          <i class="fa-solid fa-user-tag"></i> Role:
-          <select class="input" id="role" name="role" required>
-            <option value="">Select your role</option>
-            <option value="patient" selected>Patient</option>
-            <option value="doctor">Doctor</option>
-            <option value="admin">Admin</option>
-          </select>
-        </label>
+        <div class="location-fields">
+          <div class="form-group">
+            <label for="city"><i class="fa-solid fa-city"></i> City:</label>
+            <input
+              type="text"
+              id="city"
+              name="city"
+              placeholder="Enter city"
+              class="input"
+            />
+          </div>
+          <div class="form-group">
+            <label for="state"
+              ><i class="fa-solid fa-location-dot"></i> State:</label
+            >
+            <input
+              type="text"
+              id="state"
+              name="state"
+              placeholder="Enter state"
+              class="input"
+            />
+          </div>
+          <div class="form-group">
+            <label for="country"
+              ><i class="fa-solid fa-flag"></i> Country:</label
+            >
+            <input
+              type="text"
+              id="country"
+              name="country"
+              placeholder="Enter country"
+              class="input"
+            />
+          </div>
+        </div>
         <br /><br />
-        <label for="pswd">
-          <i class="fa-solid fa-lock"></i> Password:
-          <input
-            type="password"
-            placeholder="Enter password"
-            class="input"
-            id="pswd"
-            name="pswd"
-            required
-          />
-          <button class="pswd" type="button" onclick="togglePassword()">
-            <i class="fa-solid fa-eye"></i>
-          </button>
-        </label>
+        <label for="role"> <i class="fa-solid fa-user-tag"></i> Role:</label>
+        <select class="input" id="role" name="role" required>
+          <option value="">Select your role</option>
+          <option value="patient" selected>Patient</option>
+          <option value="doctor">Doctor</option>
+          <option value="admin">Admin</option>
+        </select>
+        <br /><br />
+        <label for="pswd"> <i class="fa-solid fa-lock"></i> Password:</label>
+        <input
+          type="password"
+          placeholder="Enter password"
+          class="input"
+          id="pswd"
+          name="pswd"
+          required
+        />
+        <button class="pswd" type="button" onclick="togglePassword()">
+          <i class="fa-solid fa-eye"></i>
+        </button>
+
         <p id="strength"></p>
         <label for="cpswd">
-          <i class="fa-solid fa-lock"></i> Confirm Password:
-          <input
-            type="password"
-            placeholder="Enter password"
-            class="input"
-            id="cpswd"
-            name="cpswd"
-            required
-          />
-        </label>
+          <i class="fa-solid fa-lock"></i> Confirm Password:</label
+        >
+        <input
+          type="password"
+          placeholder="Enter password"
+          class="input"
+          id="cpswd"
+          name="cpswd"
+          required
+        />
+
         <p id="match"></p>
         <br /><br />
         <input type="checkbox" name="terms" id="terms" checked required />
-        <label for="terms"
-          >I agree to the terms & conditions and Privacy Policy.</label
+        <label for="terms" class="agree"
+          >I agree to the Terms & Conditions and Privacy Policy.</label
         >
         <br />
         <div class="btns">
@@ -119,7 +154,9 @@
           <button class="option">
             <i class="fa-brands fa-google"></i> Continue with Google
           </button>
-          <h4>Already have an account? <a href="login.html">Login</a></h4>
+          <p class="dont">
+            Already have an account? <a href="login.html">Login</a>
+          </p>
         </div>
       </div>
     </form>
