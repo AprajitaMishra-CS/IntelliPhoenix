@@ -8,14 +8,8 @@ html{
 }
 
 body {
-    margin-left: 0;
-    margin-right: 0;
-    margin-top: 0;
-    margin-bottom: 0;
-}
-
-.gapping {
-    margin: 5%;
+    margin: 0;
+    background-color: rgb(227, 248, 255);
 }
 
 .navTop{
@@ -122,11 +116,6 @@ body {
     color: #16c7c1;
 }
 
-.hrTag{
-    margin-left: 1%;
-    margin-right: 1%;
-}
-
 #topBtn{
     position: fixed;
     bottom: 20px;
@@ -141,46 +130,121 @@ body {
     color: white;
 }
 
+.mainContent .heading{
+    margin-left: 2%;
+    margin-top: 10%;
+    font-weight: 600;
+    font-size: 50px;
+    color: #000928;
+    word-spacing: 8px;
+    line-height: 2.8rem;
+    text-align: center;
+}
+
+.mainContent .subheading {
+    margin-left: 2%;
+    font-size: 18px;
+    font-weight: lighter;
+    color: #000928;
+    text-align: center;
+}
+
 .mainContent{
     margin: 5%;
     margin-top: 8%;
+    background-color: transparent;
 }
 
-.mainContent .lastUpdated{
-    color: black;
+.about {
+    margin-left: 2%;
+    margin-top: 4%;
+    font-weight: lighter;
+    color: #000928;
+    line-height: 1.5rem;
 }
 
-.mainContent p{
-    font-size: small;
-    color: rgb(59, 59, 138);
+.sectionCon h3 {
+    margin-bottom: 1%;
 }
 
-.card {
+.privacy-section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.privacy-section h3 {
+    color: #142c6e;
+    margin-bottom: 25px;
+    font-size: 24px;
+}
+
+.privacy-card {
+    border: 1px solid #d6deef;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    background: #ffffff;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(20, 44, 110, 0.08);
+}
+
+.privacy-card summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 22px;
+    cursor: pointer;
+    font-weight: 600;
+    color: #142c6e;
+    font-size: 17px;
+    list-style: none;
+}
+
+.privacy-card summary::-webkit-details-marker {
+    display: none;
+}
+
+.arrow {
+    font-size: 22px;
+    transition: transform 0.3s ease;
+}
+
+.privacy-card[open] .arrow {
+    transform: rotate(180deg);
+}
+
+.privacy-content {
+    padding: 0 22px 20px;
+    color: #555;
+    line-height: 1.7;
+    border-top: 1px solid #edf0f6;
+}
+
+.privacy-content ul {
+    padding-left: 22px;
+}
+
+.privacy-content li {
+    margin-bottom: 6px;
+}
+
+.disclaimer {
     width: 95%;
-    border: 1px solid black;
-    border-radius: 20px;
     text-align: center;
     padding: 6px;
 }
 
-.card p{
-    font-size: small;
+.disclaimer p{
+    font-size: 18px;
     color: red;         /*rgb(59, 59, 138)*/
+    margin-top: 2%
 }
 
-.card:hover {
-    box-shadow: 4px 4px 20px rgb(119, 217, 250);
-    transform: translateY(-4px);
-    transition: .3s;
-}
-
-.sectionCon h4{
-    color: #2D3748;
-}
-
-.sectionCon ul li{
-    color: rgb(59, 59, 138);
-    font-size: small;
+footer{
+    display: block;
+    margin: 0;
+    padding-bottom: 0;
+    margin-bottom: 0;
 }
 
 .footerBG {
@@ -188,7 +252,8 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    height: 300px;
+    height: 400px;
+    margin: 0;
 }
 
 .footerContent {
@@ -199,19 +264,19 @@ body {
 }
 
 .iconAndtagline img{
-    height: 120px;
-    width: 120px;
+    height: 150px;
+    width: 150px;
 }
 
 .iconAndtagline h5{
     color: white;
-    font-size: small;
+    font-size: 16px;
 }
 
 .helpfulLinks a{
     color: white;
     text-decoration: none;
-    font-size: small;
+    font-size: 16px;
 }
 
 .helpfulLinks {
@@ -223,18 +288,17 @@ body {
 }
 
 .helpfulLinks h3{
-    font-size: small;
+    font-size: 16px;
 }
 
 .copyright{
     height: 20%;
     text-align: center;
     color: white;
-    font-size: small;
+    font-size: 16px;
     margin-bottom: 24px;
     /* margin: 0; */
 }
-
 
 .menuIcon{
     display: none;
@@ -330,15 +394,14 @@ span:nth-child(3){
         display: flex;
         align-items: center;
     }
+    .mainContent {
+        margin-top: 15%;
+    }
 }
 
 @media (max-width: 664px){
     .mainContent{
-        margin-top: 15%;
-    }
-
-    .copyright{
-        margin: 0;
+        margin-top: 20%;
     }
     .footerBG{
         height: 100%;
