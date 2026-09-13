@@ -3,12 +3,15 @@
 
 <main class="mainContent">
   <section class="formCon">
-    <h2>WELCOME BACK !!</h2>
-
     <div class="gapping"></div>
 
     <form action="" method="" class="form">
-      <h3>LOGIN FORM</h3>
+      <div class="startForm">
+        <img src="assests/logo.png" class="formLogo" />
+        <h2>WELCOME BACK !!</h2>
+        <p class="subheading">Login to continue your healthcare journey</p>
+      </div>
+
       <div class="formInner">
         <label for="email">
           <i class="fa-regular fa-envelope"></i> Email:
@@ -30,11 +33,13 @@
             id="pswd"
             name="pswd"
           />
-          <a href="">Forget Password?</a>
         </label>
         <br /><br />
-        <input type="checkbox" name="terms" id="terms" checked />
-        <label for="terms">Remember Me</label>
+        <div class="remForget">
+          <input type="checkbox" name="terms" id="terms" checked />
+          <label for="terms">Remember Me</label>
+          <a href="">Forget Password?</a>
+        </div>
         <br />
         <div class="btns">
           <button type="submit" class="btn">Login &rightarrow;</button>
@@ -48,7 +53,9 @@
           <button class="option">
             <i class="fa-brands fa-google"></i> Continue with Google
           </button>
-          <h4>Don't have an account? <a href="register.html">Register</a></h4>
+          <p class="dont">
+            Don't have an account? <a href="register.html">Register</a>
+          </p>
         </div>
       </div>
     </form>
