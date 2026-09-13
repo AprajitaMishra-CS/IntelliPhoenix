@@ -8,6 +8,7 @@ body {
     margin-right: 0;
     margin-top: 0;
     margin-bottom: 0;
+    background-color: rgb(227, 248, 255);
 }
 
 .navTop{
@@ -114,30 +115,207 @@ body {
     color: #16c7c1;
 }
 
-.hrTag{
+header {
+    margin-top: 6%;
+    display: flex;
+    flex-direction: row;
+}
+
+.headerFirst {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.5rem;
     margin-left: 3%;
+}
+
+.headerSecond {
     margin-right: 3%;
 }
 
-header h3{
-    margin-top: 8%;
-    margin-left: 4%;
+.headerFirst .heading{
+    margin-left: 2%;
+    margin-top: 10%;
     font-weight: 600;
+    font-size: 50px;
+    color: #000928;
+    word-spacing: 8px;
+    line-height: 2.8rem;
+}
+
+.headerFirst .subheading {
+    margin-left: 2%;
+    font-size: 20px;
+    font-weight: lighter;
+    color: #000928;
+}
+
+.about {
+    margin-left: 2%;
+    margin-top: 4%;
+    font-weight: lighter;
+    color: #000928;
+}
+
+.workIcon {
+    height: 150px;
+    width: 210px;
+    text-align: center;
+    padding: 4px; 
+    margin: 0 auto;
+    /* border: 1px solid black; */
+    position: relative;
+}
+
+.workDescription {
+    padding: 15px;
+    line-height: 1rem;
+}
+
+.workDescription b{
+    font-size: 20px;
+}
+
+.workDescription p{
+    font-size: 15px;
+    color: rgb(61, 61, 61);
+}
+
+.headerLogo {
+    height: 310px;
+    width: 650px;
+    margin-left: 4%;
+    margin-right: 5%;
+    margin-top: 8%;
+}
+
+.horizontalLine {
+    height: 140px;
+    width: 2px;
+    margin: 5px;
+    background-color: rgb(196, 194, 194);
+}
+
+.step-Card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 65px;
+}
+
+.stepLogo {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.sLColor {
+    background-color: rgb(130, 180, 245);
+}
+
+.sl {
+    height: 55px;
+    width: 55px;
+    border-radius: 50%;
+}
+
+.countersDir{
+    width: 90%;
+    margin: 40px auto;
+    padding: 20px 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+    gap: 100px;
+}
+
+.cL {
+    height: 55px;
+    width: 55px;
+    border-radius: 100%;
+}
+
+.counterLogo-1, .counterLogo-2, .counterLogo-3, .counterLogo-4 {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.counterLogo-1 {
+    background-color: rgb(193, 253, 193);
+}
+
+.counterLogo-2 {
+    background-color: rgb(196, 241, 252);
+}
+
+.counterLogo-3 {
+    background-color: rgb(206, 195, 253);
+}
+
+.counterLogo-4 {
+    background-color: rgb(244, 252, 196);
+}
+
+.wholeCounter {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 8px;
+    gap: 10px;
+}
+
+.counter-img {
+    height: 35px;
+    width: 35px;
+    object-fit: contain;
+}
+
+.countersDir .wholeCounter .counter h2{
+    margin: 0;
+    font-size: 28px;
+    font-weight: 700;
+    color: #000028;
+}
+
+.countersDir .wholeCounter .counter p{
+    margin: 5px 0 0;
     font-size: large;
-    color: #2D3748;
+    color: rgb(73, 69, 69);
 }
 
 .mainContent{
-    margin-top: 4%;
-    margin-left: 4%;
-    margin-right: 4%;
-    margin-bottom: 4%;
-    font-size: small;
+    margin: 4%;
+    background-color: transparent;
+}
+
+.mainContent p {
+    font-size: 15px;
     color: #2D3748;
+    background-color: transparent;
+    font-weight: lighter;
 }
 
 .disclaimer{
+    margin-top: 3%;
     color: red;
+}
+
+footer{
+    display: block;
+    margin: 0;
+    padding-bottom: 0;
+    margin-bottom: 0;
 }
 
 .footerBG {
@@ -145,7 +323,8 @@ header h3{
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    height: 300px;
+    height: 400px;
+    margin: 0;
 }
 
 .footerContent {
@@ -156,19 +335,19 @@ header h3{
 }
 
 .iconAndtagline img{
-    height: 120px;
-    width: 120px;
+    height: 150px;
+    width: 150px;
 }
 
 .iconAndtagline h5{
     color: white;
-    font-size: small;
+    font-size: 16px;
 }
 
 .helpfulLinks a{
     color: white;
     text-decoration: none;
-    font-size: small;
+    font-size: 16px;
 }
 
 .helpfulLinks {
@@ -180,14 +359,14 @@ header h3{
 }
 
 .helpfulLinks h3{
-    font-size: small;
+    font-size: 16px;
 }
 
 .copyright{
     height: 20%;
     text-align: center;
     color: white;
-    font-size: small;
+    font-size: 16px;
     margin-bottom: 24px;
     /* margin: 0; */
 }
@@ -301,10 +480,48 @@ span:nth-child(3){
         display: flex;
         align-items: center;
     }
+    header{
+        margin-top: 18%;
+    }
+    .countersDir {
+        width: 90%;
+        padding: 20px 10px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+    .wholeCounter{
+        width: 100%;
+        margin-bottom: 50px;
+    }
+    .counter h2{
+        font-size: 24px;
+    }
+    .counter p{
+        font-size: 14px;
+    }
+    .horizontalLine {
+        display: none;
+    }
+    .workIcon {
+        margin-top: 5%;
+    }
+    header {
+        margin-top: 5%;
+        display: flex;
+        flex-direction: column;
+    }
 }
 
 @media (max-width: 664px){
-    header h3{
+    .countersDir{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+    }
+    header{
         margin-top: 18%;
         font-size: small;
     }
@@ -333,5 +550,15 @@ span:nth-child(3){
     }
     .iconAndtagline h5{
         margin-bottom: 6px;
+    }
+    .horizontalLine {
+        display: none;
+    }
+    .workIcon {
+        margin-top: 5%;
+    }
+    .headerLogo {
+        height: fit-content;
+        width: 470px;
     }
 }

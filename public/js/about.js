@@ -47,4 +47,31 @@ topBtn.onclick = function(){
 // copyright year
 const copyrightYear = document.querySelector(".copyright p");
 const currentYear = new Date().getFullYear();
-copyrightYear.innerHTML = `Copyright &copy; ${currentYear}`;
+if(copyrightYear){
+    copyrightYear.innerHTML = `Copyright &copy; ${currentYear}`;
+}
+
+// Counter 
+const counters = document.querySelectorAll(".count");
+const speed = 100;
+
+counters.forEach((counter)=>{
+    const updateCount = ()=>{
+        const target = +counter.getAttribute("data-target");
+        const count = +counter.innerText;
+        const increment = Math.ceil(target/speed);
+
+        if(count<target){
+            counter.innerText = count + increment;
+
+            setTimeout(updateCount, 20);
+        } else {
+            if(target==95){
+                counter.innerText = target + "%";
+            } else {
+                counter.innerText = target + "+";
+            }
+        }
+    };
+    updateCount();
+});
