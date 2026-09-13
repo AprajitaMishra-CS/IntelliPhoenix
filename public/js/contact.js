@@ -45,7 +45,7 @@ topBtn.onclick = function(){
 }
 
 // form input hover
-const form = document.querySelector("form");
+const form = document.getElementsByClassName("formCon");
 
 form.addEventListener("click",(e)=>{
     e.stopPropagation();
