@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+:root{
+  font-family: Arial, Helvetica, sans-serif;
+  color: #111827;
+  background: #f8fafc;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+button, input, select, textarea{
+  font: inherit;
+}
+
+button, a{
+  -webkit-tap-highlight-color: transparent;
+}
+
+.page-shell {
+  min-height: calc(100vh-78px);
+}
+
+.form-card{
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #fff7f6, #ffffff);
+  box-shadow: 0 5px 18px rgb(15 23 42 / 9%);
+}
+
+.form-input{
+  width: 100%;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: transparent;
+  padding: 11px 13px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-input:focus{
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgb(37 99 235 / 12%);
+}
+
+.primary-btn{
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 999px;
+  background: #0d1b40;
+  color: white;
+  font-weight: 600;
+  padding: 12px 24px;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.primary-btn:hover {
+  background: #163c77;
+  transform: translateY(-1px);
+}
+
+.policy-item{
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: linear-gradient(120deg, #fff6f5, #f8fafc);
+}
