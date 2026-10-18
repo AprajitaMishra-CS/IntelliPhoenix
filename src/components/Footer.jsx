@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { FaFacebookF, FaInstagram, FaXTwitter, FaLinkedinIn } from 'react-icons/fa6';
+import { Mail } from "lucide-react";
 
 export function Footer() {
     return (
@@ -29,7 +30,7 @@ export function Footer() {
                             ].map(([label, path]) => (
                                 <li key={path}>
                                     <Link className="hover:text-sky-300" to={path}>
-                                        &gt;&nbsp;{label}
+                                        &gt;&gt;&nbsp;&nbsp;{label}
                                     </Link>
                                 </li>
                             ))}
@@ -41,7 +42,7 @@ export function Footer() {
                         <h3 className="mb-4 font-bold tracking-wide">CONNECT WITH US</h3>
                         <div className="space-y-3">
                             <Link to="/contact" className="flex items-center gap-2 hover:text-sky-300">
-                                Contact
+                                <Mail/> Contact
                             </Link>
                             <a href="#facebook" className="flex items-center gap-2 hover:text-sky-300">
                                 <FaFacebookF/> Facebook

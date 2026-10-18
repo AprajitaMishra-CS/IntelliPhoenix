@@ -1,14 +1,10 @@
-import { useState } from 'react'
-import Navbar from './components/Navbar'
-import { Footer } from './components/Footer'
+import Layout from './components/Layout'
 
 function App() {
 
   return (
     <>
-      <Navbar/>
-  
-      <Footer/>
+      <Layout/>
     </>
   )
 }
