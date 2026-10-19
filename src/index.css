@@ -81,3 +81,121 @@ button, a{
   border-radius: 12px;
   background: linear-gradient(120deg, #fff6f5, #f8fafc);
 }
+
+.txtDiamond {
+  height: 20px;
+  width: 16px;
+  margin-top: 4px;
+}
+
+.heroSection {
+  background-color: #dbe8f8;
+}
+
+.InTextLogo {
+  height: 40px;
+  width: 40px;
+  margin-top: 2.5%;
+  border-radius: 50px;
+}
+
+.heroSecImg {
+  height: 590px;
+  width: 490px;
+}
+
+.hrtag {
+  width: full;
+  margin: 3rem;
+  color: rgb(182, 175, 175);
+}
+
+.page-header {
+  padding: 4rem 1.5rem 3rem;
+  text-align: center;
+  background: linear-gradient(135deg, #f8fafc, #eaf4ff);
+  border-bottom: 1px solid #dbeafe;
+}
+
+.page-header-eyebrow {
+  margin-bottom: 0.75rem;
+  color: #2563a6;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.page-header h1{
+  margin: 0;
+  color: #071b50;
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  line-height: 1.2;
+}
+
+.page-header-description {
+  max-width: 680px;
+  margin: 1rem auto 0;
+  color: #52627a;
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+.feature-card {
+  padding: 1.75rem;
+  background: #ffffff;
+  border: 1px solid #e1eaf5;
+  border-radius: 18px;
+  box-shadow: 0 8px 24px rgba(7, 27, 80, 0.06);
+  transition: transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  border-color: #a9c9f5;
+  box-shadow: 0 14px 32px rgba(7, 27, 80, 0.12);
+}
+
+.feature-card-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  margin-bottom: 1.25rem;
+  border-radius: 14px;
+  background: #eaf3ff;
+  color: #2563a6;
+  font-size: 1.6rem;
+}
+
+.feature-card h3 {
+  margin: 0 0 0.75rem;
+  color: #071b50;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.feature-card p {
+  margin: 0;
+  color: #52627a;
+  font-size: 0.95rem;
+  line-height: 1.75;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+}
