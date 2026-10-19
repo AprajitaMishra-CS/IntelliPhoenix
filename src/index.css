@@ -104,6 +104,11 @@ button, a{
   width: 490px;
 }
 
+.AboutHeroSecImg {
+  height: 300px;
+  width: 400px;
+}
+
 .hrtag {
   width: full;
   margin: 3rem;
