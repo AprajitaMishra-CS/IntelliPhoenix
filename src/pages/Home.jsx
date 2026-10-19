@@ -47,7 +47,7 @@ export default function Home() {
                 </p>
             </div>
 
-            <div className="mt-4 flex justify-center mb-6">
+            <div className="mt-4 flex justify-center">
                 <p className="text-2xl font-bold text-[#0F172B]">
                     How It Works
                 </p>
