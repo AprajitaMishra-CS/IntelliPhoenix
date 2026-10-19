@@ -136,6 +136,7 @@ button, a{
   color: #071b50;
   font-size: clamp(2rem, 4vw, 3.25rem);
   line-height: 1.2;
+  font-weight: 600;
 }
 
 .page-header-description {
