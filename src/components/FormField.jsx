@@ -12,7 +12,7 @@ export default function FormField({ label, name, type="text", value, onChange, p
             <label htmlFor={name} className="mb-2 block text-sm font-medium text-[#17213D]">
                 {label}
                 {required && (
-                    <span className="ml-1 text-red-500">&ast;</span>
+                    <span className="ml-1 text-red-500">&#42;</span>
                 )}
             </label>
 

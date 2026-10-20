@@ -200,6 +200,11 @@ button, a{
   padding: 2rem 1.5rem;
 }
 
+.loginImg {
+  height: 140px;
+  width: 140px;
+}
+
 @media (max-width: 768px) {
   .features-grid {
     grid-template-columns: 1fr;
