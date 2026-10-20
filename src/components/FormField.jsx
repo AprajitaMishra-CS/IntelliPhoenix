@@ -9,7 +9,10 @@ export default function FormField({ label, name, type="text", value, onChange, p
 
     return (
         <div className={`w-full ${className}`}>
-            <label htmlFor={name} className="mb-2 block text-sm font-medium text-[#17213D]">
+            <label htmlFor={name} className="flex flex-cols mb-2 block text-sm font-medium text-[#17213D]">
+                {Icon && (
+                    <Icon size={19} strokeWidth={1.8} className="shrink-0 text-slate-400"/>
+                )} &nbsp;
                 {label}
                 {required && (
                     <span className="ml-1 text-red-500">&#42;</span>
@@ -17,10 +20,6 @@ export default function FormField({ label, name, type="text", value, onChange, p
             </label>
 
             <div className={`flex items-center gap-3 rounded-xl border bg-slate-50 px-4 transition focus-within:bg-white focus-within:ring-2 ${error ? "border-red-400 focus-within:border-red-400 focus-within:ring-red-100" : "border-slate-200 focus-within:border-blue-400 focus-within:ring-blue-100"}`}>
-                {Icon && (
-                    <Icon size={19} strokeWidth={1.8} className="shrink-0 text-slate-400"/>
-                )}
-
                 <input id={name} name={name} type={inputType} value={value} onChange={onChange} placeholder={placeholder} required={required} disabled={disabled} autoComplete={autoComplete} aria-invalid={Boolean(error)} className="min-w-0 flex-1 bg-transparent py-3 text-sm text-[#080B20] outline-none placeholder:text-slate-400 disabled:cursor-not-allowed disabled:opacity-60" />
             
                 {isPassword && (

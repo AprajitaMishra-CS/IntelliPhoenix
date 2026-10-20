@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Form, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Mail, Lock, ArrowBigRightDashIcon } from "lucide-react";
 
 import AuthCard from "../components/AuthCard";
