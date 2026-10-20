@@ -1,7 +1,16 @@
+import { useNavigate } from 'react-router-dom';
+
 import Button from "../components/Button";
 import { ShieldCheck, UsersRound, Clock3 } from "lucide-react";
 
 export default function HeroSection() {
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        // Navigate to the target route path
+        navigate('/register'); 
+    };
+
     return (
         <div className="flex flex-column">
             <div className="leading-8">
@@ -29,7 +38,7 @@ export default function HeroSection() {
                 </p>
 
                 <div className="mb-4">
-                    <Button onClick={() => console.log("Journey Started")}>
+                    <Button onClick={handleClick}>
                         Start Your Healthcare Journey &rArr; 
                     </Button>
 
