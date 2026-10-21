@@ -66,7 +66,7 @@ export default function Login() {
             }
 
             alert("Login successfully");
-            navigate("/");
+            navigate("/dashboard");
         } catch(error) {
             console.error("Login error: ", error);
             alert("Unable to connect to the server. Please try again.");

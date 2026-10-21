@@ -10,6 +10,7 @@ import Register from './pages/Register'
 import Privacy from './pages/Privacy'
 import Terms from './pages/Terms'
 import NotFound from './pages/NotFound'
+import PatientDashboard from './pages/PatientDashboard'
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
             <Route path='/terms' element={<Terms/>}/>
             <Route path='*' element={<NotFound/>}/>
           </Route>
+          <Route path='/dashboard' element={<PatientDashboard/>} />
         </Routes>
       </BrowserRouter>
     </>

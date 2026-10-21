@@ -62,7 +62,7 @@ export function Footer() {
 
                 {/* Copyright */}
                 <div className="text-center border-t border-white/10 px-4 py-5 text-sm text-gray-300">
-                    Copyright &copy; {new Date().getFullYear()} IntelliPhoenix
+                    Copyright &copy; {new Date().getFullYear()} IntelliPhoenix. All rights reserved.
                 </div>
             </footer>
         </>
