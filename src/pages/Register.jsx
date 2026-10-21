@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { User2, Mail, Phone, CalendarDays, UserRound, Building, MapPin, Flag, UserCog, Lock, ArrowBigRightDashIcon, Building2 } from "lucide-react";
+import { User2, Mail, Phone, CalendarDays, UserRound, MapPin, Flag, UserCog, Lock, ArrowBigRightDashIcon, Building2 } from "lucide-react";
 
 import AuthCard from "../components/AuthCard";
 import FormField from "../components/FormField";
@@ -20,26 +20,58 @@ export default function Register() {
         role: "patient",
         password: "",
         confirmPassword: "",
+        agree: false,
     });
 
-    const [rememberMe, setRememberMe] = useState(true);
-
     function handleChange(event) {
-        const {name, value} = event.target;
+        const {name, value, type, checked} = event.target;
 
         setFormData((prev) => ({
             ...prev,
-            [name]: value,
+            [name]: type === "checkbox" ? checked : value,
         }));
     }
 
-    function handleSubmit(event) {
+    async function handleSubmit(event) {
         event.preventDefault();
 
-        console.log("Register Form: ", {
-            ...formData,
-            rememberMe,
-        });
+        try {
+            const response = await fetch (
+                "http://localhost:8080/api/auth/register",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        fullName: formData.name,
+                        email: formData.email,
+                        phone: formData.phone,
+                        dateOfBirth: formData.dob,
+                        gender: formData.gender === "female" ? "Female" : formData.gender === "male" ? "Male" : formData.gender === "other" ? "Other" : "Prefer not to say",
+                        city: formData.city,
+                        state: formData.state,
+                        country: formData.country,
+                        password: formData.password,
+                        confirmPassword: formData.confirmPassword,
+                        acceptedTerms: formData.agree,
+                    }),
+                }
+            );
+
+            const data = await response.json();
+
+            if(!response.ok){
+                alert(data.message || "Registration failed.");
+                return;
+            }
+
+            alert("Registration successful !! Please log in.");
+            window.location.href = "/login";
+        } catch(error) {
+            console.error("Registration error: ", error);
+            alert("Unable to connect to the server. Please try again.");
+        }
     }
 
     return (
@@ -89,7 +121,7 @@ export default function Register() {
 
                 {/* City, State and Country */}
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-                    <FormField label="City" name="city" value={formData.city} onChange={handleChange} placeholder="Enter city" icon={Building} autoComplete="address-level2" required />
+                    <FormField label="City" name="city" value={formData.city} onChange={handleChange} placeholder="Enter city" icon={Building2} autoComplete="address-level2" required />
                     <FormField label="State" name="state" value={formData.state} onChange={handleChange} placeholder="Enter state" icon={MapPin} autoComplete="address-level1" required />
                     <FormField label="Country" name="country" value={formData.country} onChange={handleChange} placeholder="Enter country" icon={Flag} autoComplete="country-name" required />
                 </div>
@@ -102,8 +134,8 @@ export default function Register() {
                     </label>
                     <select id="role" name="role" value={formData.role} onChange={handleChange} required className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100">
                         <option value="patient">Patient</option>
-                        <option value="doctor">Doctor</option>
-                        <option value="admin">Admin</option>
+                        <option value="doctor" disabled>Doctor</option>
+                        <option value="admin" disabled>Admin</option>
                     </select>
                 </div>
 

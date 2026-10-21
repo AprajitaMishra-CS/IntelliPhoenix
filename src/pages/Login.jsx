@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Mail, Lock, ArrowBigRightDashIcon } from "lucide-react";
@@ -8,6 +9,8 @@ import SocialLogin from "../components/SocialLogin";
 import Button from "../components/Button";
 
 export default function Login() {
+    const navigate = useNavigate();
+
     const [formData, setFormData] = useState({
         email: "",
         password: "",
@@ -24,13 +27,50 @@ export default function Login() {
         }));
     }
 
-    function handleSubmit(event) {
+    async function handleSubmit(event) {
         event.preventDefault();
 
-        console.log("Login Form: ", {
-            ...formData,
-            rememberMe,
-        });
+        try {
+            const response = await fetch(
+                "http://localhost:8080/api/auth/login",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        email: formData.email.trim().toLowerCase(),
+                        password: formData.password,
+                    }),
+                }
+            );
+
+            const data = await response.json();
+
+            if(!response.ok){
+                alert(data.message || "Login failed. Please try again.");
+                return;
+            }
+
+            if(!data.token){
+                alert("Login response did not contain an authentication token.");
+                return;
+            }
+
+            // Storing token
+            sessionStorage.setItem("token", data.token);
+
+            // keeping only non-sensitive user details
+            if(data.user){
+                sessionStorage.setItem("user", JSON.stringify(data.user));
+            }
+
+            alert("Login successfully");
+            navigate("/");
+        } catch(error) {
+            console.error("Login error: ", error);
+            alert("Unable to connect to the server. Please try again.");
+        }
     }
 
     return (
