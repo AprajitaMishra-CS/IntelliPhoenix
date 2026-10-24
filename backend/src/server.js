@@ -8,6 +8,7 @@ import dotenv from "dotenv";
 import connectDB from "../config/db.js";
 import authRoutes from "./routes/authRoutes.js";
 import appointmentRoutes from "./routes/appointmentRoutes.js";
+import symptomRoutes from "./routes/symptomRoutes.js";
 
 dotenv.config();
 
@@ -23,6 +24,7 @@ app.use(
 app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/appointments", appointmentRoutes);
+app.use("/api/symptoms", symptomRoutes);
 
 // Basic API Routes 
 app.get("/", (req, res) => {
