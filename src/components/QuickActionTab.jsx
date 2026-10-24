@@ -7,7 +7,7 @@ const quickActions = [
         description: "Schedule a visit with a specialist",
         icon: CalendarDays,
         color: "blue",
-        path: "/appointments/book",
+        path: "/appointment/book",
     },
     {
         title: "Symptom Checker",

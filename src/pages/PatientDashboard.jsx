@@ -66,7 +66,7 @@ export default function PatientDashboard() {
                                     Your upcoming appointments will appear here after booking.
                                 </p>
 
-                                <Link to="/appointments/book" className="mt-4 inline-flex items-center gap-2 rounded-xl bg-[#080b16] px-4 py-2.5 text-sm font-semibold text-white hover:bg-blue-700">
+                                <Link to="/appointment/book" className="mt-4 inline-flex items-center gap-2 rounded-xl bg-[#080b16] px-4 py-2.5 text-sm font-semibold text-white hover:bg-blue-700">
                                     Book an appointment <ArrowRight size={16} />
                                 </Link>
                             </div>
