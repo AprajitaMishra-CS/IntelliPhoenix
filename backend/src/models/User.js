@@ -27,6 +27,19 @@ const userSchema = new mongoose.Schema(
             type: String,
             enum: ["Female", "Male", "Other", "Prefer not to say"],
             required: true,
+            set: (value) => {
+                if(typeof value !== "string") return value;
+
+                const normalized = value.trim().toLowerCase();
+
+                const genderMap = {
+                    male: "Male",
+                    female: "Female",
+                    other: "Other",
+                };
+
+                return genderMap[normalized] || value.trim();
+            },
         },
         address: {
             city: {

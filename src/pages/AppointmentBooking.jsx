@@ -151,7 +151,9 @@ export default function AppointmentBooking(){
                             {doctors.map((doctor) => (
                                 <option key={doctor._id} value={doctor._id}>
                                     {doctor.fullName}
+                                    &nbsp; (
                                     {doctor.email ? `${doctor.email}` : ""}
+                                    )
                                 </option>
                             ))}
                         </select>
