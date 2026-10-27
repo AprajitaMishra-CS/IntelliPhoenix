@@ -13,6 +13,7 @@ import NotFound from './pages/NotFound'
 import PatientDashboard from './pages/PatientDashboard'
 import AppointmentBooking from './pages/AppointmentBooking'
 import SymptomChecker from './pages/SymptomChecker'
+import MyAppointments from './pages/MyAppointment'
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
           <Route path='/dashboard' element={<PatientDashboard/>} />
           <Route path='/appointment/book' element={<AppointmentBooking/>} />
           <Route path='/symptom-checker' element={<SymptomChecker/>} />
+          <Route path='/appointments' element={<MyAppointments/>} />
         </Routes>
       </BrowserRouter>
     </>
