@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const API_URL = "http://localhost:8080/api/symptoms/check";
 
@@ -76,6 +77,9 @@ export default function SymptomChecker() {
     return (
         <main className="min-h-screen bg-slate-50 px-4 py-12 text-slate-800 sm:px-6">
             <div className="mx-auto max-w-5xl">
+                <Link to="/dashboard" className="mb-6 inline-block text-sm font-medium text-blue-700 hover:text-blue-900">
+                    &larr; Back to Dashboard
+                </Link>
                 <header className="mb-10 text-center">
                     <span className="inline-flex rounded-full bg-[#C4DBF7] px-4 py-2 text-sm font-semibold text-navy-900 mb-4 w-fit flex flex-cols">
                         <img src="/assets/diamond.png" className="h-5 w-5"/>

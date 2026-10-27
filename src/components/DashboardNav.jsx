@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Bell, Menu, X } from "lucide-react";
+import { Bell, Menu, UserRound, X } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export default function DashboardNav(){
@@ -14,7 +14,6 @@ export default function DashboardNav(){
     }
 
     const patientName = user.fullName || "Patient";
-    const initial = patientName.charAt(0).toUpperCase();
 
     return (
         <div>
@@ -40,7 +39,9 @@ export default function DashboardNav(){
 
                     <div className="flex items-center gap-2">
                         <div className="flex h-10 w-10 items-center justify-center rounded-full bg-sky-400 font-semibold text-white">
-                            {initial}
+                            <Link to="/profile" className="flex items-center gap-3 rounded-lg px-4 py-3">
+                                <UserRound size={20} />
+                            </Link>
                         </div>
                         <div className="hidden sm:block">
                             <p className="max-w-40 truncate text-sm text-white font-semibold">
