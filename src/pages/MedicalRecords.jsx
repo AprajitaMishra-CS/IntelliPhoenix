@@ -169,8 +169,8 @@ export default function MedicalRecords() {
 
                 {!loading && !error && records.length === 0 && (
                     <div className="rounded-2xl border border-dashed border-slate-300 bg-white px-6 py-14 text-center">
-                        <div className="mb-4 text-5xl" aria-label="true">
-                            <FolderOpen size={24} className="text-yellow-500" />
+                        <div className="mb-4 text-5xl flex justify-center">
+                            <FolderOpen size={24} className="text-yellow-500" aria-label="true" />
                         </div>
 
                         <h2 className="text-xl font-bold text-slate-900">
