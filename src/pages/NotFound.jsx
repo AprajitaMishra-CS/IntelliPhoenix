@@ -29,10 +29,10 @@ export default function NotFound() {
                         Back to Home
                     </Link>
 
-                    <button className="inline-flex items-center justify-center gap-2 rounded-full border border-[#9AA3B5] bg-transparent px-7 py-3 font-semibold text-[#17213D] transition hover:border-[#315D9B] hover:bg-[#EAF1FC]">
+                    <Link to="/login" className="inline-flex items-center justify-center gap-2 rounded-full border border-[#9AA3B5] bg-transparent px-7 py-3 font-semibold text-[#17213D] transition hover:border-[#315D9B] hover:bg-[#EAF1FC]">
                         <ArrowLeft size={18} />
                         Go Back
-                    </button>
+                    </Link>
                 </div>
 
                 <p className="mt-10 text-sm text-slate-500">
