@@ -32,10 +32,10 @@ export default function DashboardNav(){
                 </div>
 
                 <div className="flex items-center gap-3 px-6">
-                    <button type="button" className="relative text-white rounded-full p-2 hover:bg-slate-100 hover:text-black" aria-label="Notifications">
+                    <Link to="/notifications" className="relative text-white rounded-full p-2 hover:bg-slate-100 hover:text-black hover:bg-slate-200" aria-label="Notifications">
                         <Bell size={21} />
                         <span className="absolute right-1 top-1 h-2 w-2 rounded-full bg-rose-500"/>
-                    </button>
+                    </Link>
 
                     <div className="flex items-center gap-2">
                         <div className="flex h-10 w-10 items-center justify-center rounded-full bg-sky-400 font-semibold text-white">
