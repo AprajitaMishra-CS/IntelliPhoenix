@@ -12,6 +12,7 @@ import symptomRoutes from "./routes/symptomRoutes.js";
 import adminRoutes from "./routes/adminRoutes.js";
 import profileRoutes from "./routes/profileRoutes.js";
 import medicalRecordRoutes from "./routes/medicalRecordRoutes.js";
+import prescriptionRoutes from "./routes/prescriptionRoutes.js";
 
 dotenv.config();
 
@@ -31,6 +32,7 @@ app.use("/api/symptoms", symptomRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/profile", profileRoutes);
 app.use("/api/medical-records", medicalRecordRoutes);
+app.use("/api/prescriptions", prescriptionRoutes);
 
 // Basic API Routes 
 app.get("/", (req, res) => {
