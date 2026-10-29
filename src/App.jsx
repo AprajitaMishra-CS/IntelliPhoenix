@@ -18,6 +18,7 @@ import Profile from './pages/Profile'
 import MedicalRecords from './pages/MedicalRecords'
 import Prescriptions from './pages/Prescriptions'
 import Notifications from './pages/Notifications'
+import DoctorDashboard from './pages/DoctorDashboard'
 
 function App() {
   return (
@@ -43,6 +44,8 @@ function App() {
           <Route path='/medical-records' element={<MedicalRecords/>} />
           <Route path='/prescriptions' element={<Prescriptions/>} />
           <Route path='/notifications' element={<Notifications/>} />
+
+          <Route path='/doctor-dashboard' element={<DoctorDashboard/>} />
         </Routes>
       </BrowserRouter>
     </>
