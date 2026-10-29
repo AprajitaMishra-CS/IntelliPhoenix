@@ -17,6 +17,7 @@ import MyAppointments from './pages/MyAppointment'
 import Profile from './pages/Profile'
 import MedicalRecords from './pages/MedicalRecords'
 import Prescriptions from './pages/Prescriptions'
+import Notifications from './pages/Notifications'
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
           <Route path='/profile' element={<Profile/>} />
           <Route path='/medical-records' element={<MedicalRecords/>} />
           <Route path='/prescriptions' element={<Prescriptions/>} />
+          <Route path='/notifications' element={<Notifications/>} />
         </Routes>
       </BrowserRouter>
     </>
