@@ -139,15 +139,12 @@ export default function Notifications() {
     return (
         <div className="min-h-screen bg-slate-50 px-4 py-8 sm:px-6 lg:px-10">
             <div className="mx-auto max-w-6xl">
-                <Link to="/dashboard" className="mb-6 inline-block text-sm font-medium text-blue-700 hover:text-blue-900">
-                    &larr; Back to Dashboard
-                </Link>
             
                 {/* Header */}
                 <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                     <div>
                         <p className="mb-2 text-sm font-semibold uppercase tracking-wider text-sky-700">
-                            Patient Dashboard
+                            Dashboard
                         </p>
             
                         <h1 className="text-3xl font-bold text-slate-900 sm:text-4xl">

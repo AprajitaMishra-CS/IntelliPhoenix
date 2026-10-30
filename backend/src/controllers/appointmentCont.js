@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import Appointment from "../models/Appointment.js";
 import User from "../models/User.js";
+import Notification from "../models/Notification.js";
 
 // booking appointment
 export async function bookAppointment(req, res){
@@ -46,6 +47,15 @@ export async function bookAppointment(req, res){
             doctor: doctor._id,
             appointmentDate: date,
             reason: reason.trim(),
+        });
+
+        const patient = await User.findById(req.user.userId).select("fullName");
+
+        await Notification.create({
+            recipient: doctor._id,
+            title: "New Appointment Request",
+            message: `${patient?.fullName || "A Patient"} has booked an appointment. Please review the appointment request.`,
+            type: "Appointment",
         });
 
         return res.status(201).json({
@@ -126,6 +136,13 @@ export async function cancelAppointment(req, res) {
 
         appointment.status = "cancelled";
         await appointment.save();
+
+        await Notification.create({
+            recipient: appointment.doctor,
+            title: "Appointment Cancelled",
+            message: "A patient has cancelled their appointment. Please check your appointment schedule.",
+            type: "Appointment",
+        });
 
         return res.status(200).json({
             success: true,
@@ -228,6 +245,13 @@ export async function updateAppointmentStatus(req, res) {
                 message: "Pending appointment not found or you are not authorized to update it",
             });
         }
+
+        await Notification.create({
+            recipient: appointment.patient._id,
+            title: status === "confirmed" ? "Appointment Confirmed" : "Appointment Rejected",
+            message: status === "confirmed" ? "Your doctor has confirmed your appointment." : "Your doctor has rejected your appointment request.",
+            type: "Appointment",
+        });
 
         return res.status(200).json({
             success: true,

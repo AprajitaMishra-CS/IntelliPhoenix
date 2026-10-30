@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import Prescription from "../models/Prescription.js";
 import User from "../models/User.js";
+import Notification from "../models/Notification.js";
 
 // Doctor creates a prescription for a patient
 export async function createPrescription(req, res) {
@@ -41,6 +42,13 @@ export async function createPrescription(req, res) {
             diagnosis,
             medicines,
             notes,
+        });
+
+        await Notification.create({
+            recipient: patient._id,
+            title: "New Prescription Available",
+            message: "Your doctor has issued a new prescription. Please check your prescriptions.",
+            type: "Prescription",
         });
 
         return res.status(201).json({

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { LayoutDashboard, CalendarDays, Users, FileText, Bell, Menu, X, LogOut, Clock, ArrowUpRight, Activity, CheckCircle2, } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const navigation = [
     { label: "Overview", icon: LayoutDashboard },
@@ -43,6 +44,9 @@ export default function DoctorDashboard() {
     const [prescriptions, setPrescriptions] = useState([]);
     const [prescriptionsLoading, setPrescriptionsLoading] = useState(false);
     const [prescriptionsError, setPrescriptionsError] = useState("");
+    const [notifications, setNotifications] = useState([]);
+    const [unreadCount, setUnreadCount] = useState(0);
+    const [showNotification, setShowNotifications] = useState(false);
 
     const selectTab = (tab) => {
         setActiveTab(tab);
@@ -742,9 +746,10 @@ export default function DoctorDashboard() {
                         </div>
                     </div>
 
-                    <button aria-label="Notifications" className="relative rounded-xl border border-slate-200 p-2.5 text-slate-100 hover:bg-slate-50 hover:text-black">
-                        <Bell size={19} />
-                    </button>
+                    <Link to="/notifications" className="relative text-white rounded-full p-2 hover:bg-slate-100 hover:text-black hover:bg-slate-200" aria-label="Notifications">
+                        <Bell size={21} />
+                        <span className="absolute right-1 top-1 h-2 w-2 rounded-full bg-rose-500"/>
+                    </Link>
                 </header>
 
                 <div className="mx-auto max-w-7xl space-y-8 p-4 sm:p-8">
