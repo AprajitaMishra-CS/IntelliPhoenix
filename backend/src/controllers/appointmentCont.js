@@ -162,3 +162,150 @@ export async function getDoctors(req, res){
         });
     }
 }
+
+// for doctor appointment
+export async function getDoctorAppointments(req, res) {
+    try {
+        const appointments = await Appointment.find({
+            doctor: req.user.userId,
+        })
+        .populate("patient", "fullName email phone")
+        .sort({ appointmentDate: 1 });
+
+        return res.status(200).json({
+            success: true,
+            appointments,
+        });
+
+    } catch(error) {
+        console.error("Get doctor appointments error: ", error.message);
+
+        return res.status(500).json({
+            success: false,
+            message: "Unable to fetch doctor appointments.",
+        });
+    }
+}
+
+// update appointment status
+export async function updateAppointmentStatus(req, res) {
+    try {
+        const { appointmentId } = req.params;
+        const { status } = req.body;
+
+        if(!mongoose.isValidObjectId(appointmentId)) {
+            return res.status(400).json({
+                success: false,
+                message: "Invalid appointment ID",
+            });
+        }
+
+        if(!["confirmed", "rejected"].includes(status)){
+            return res.status(400).json({
+                success: false,
+                message: "Status must be confirmed or rejected",
+            });
+        }
+
+        const appointment = await Appointment.findOneAndUpdate(
+            {
+                _id: appointmentId,
+                doctor: req.user.userId,
+                status: "pending",
+            },
+            {
+                $set: { status },
+            },
+            {
+                returnDocument: "after",
+                runValidators: true,
+            }
+        ).populate("patient", "fullName email phone");
+
+        if(!appointment) {
+            return res.status(404).json({
+                success: false,
+                message: "Pending appointment not found or you are not authorized to update it",
+            });
+        }
+
+        return res.status(200).json({
+            success: true,
+            message: `Appointment ${status} successfully.`,
+            appointment,
+        });
+
+    } catch(error) {
+        console.error("Update Appointment status error: ", error.message);
+
+        return res.status(500).json({
+            success: false,
+            message: "Unable to update appointment status.",
+        });
+    }
+}
+
+// doctor statistics
+export async function getDoctorStats(req, res){
+    try {
+        const doctorId = req.user.userId;
+
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        const tomorrow = new Date(today);
+        tomorrow.setDate(tomorrow.getDate()+1);
+
+        const [totalPatients, todayAppointments, pendingAppointments, completedAppointments] = await Promise.all([
+            Appointment.distinct("patient", {doctor: doctorId}),
+            Appointment.countDocuments({doctor: doctorId, appointmentDate: {$gte: today, $lt: tomorrow}}),
+            Appointment.countDocuments({doctor: doctorId, status: "pending"}),
+            Appointment.countDocuments({doctor: doctorId, status: "completed"})
+        ]);
+
+        return res.status(200).json({
+            success: true,
+            stats: {
+                totalPatients: totalPatients.length,
+                todayAppointments,
+                pendingAppointments,
+                completedAppointments
+            }
+        });
+
+    } catch(error) {
+        console.error("Doctor stats error: ", error.message);
+
+        return res.status(500).json({
+            success: false,
+            message: "Unable to fetch doctor statistics.",
+        });
+    }
+}
+
+// get patient list
+export async function getMyPatients(req, res) {
+    try {
+        const patientIds = await Appointment.distinct("patient", {doctor: req.user.userId});
+
+        const patients = await User.find({
+            _id: {$in: patientIds},
+            role: "patient",
+        })
+        .select("fullName email phone gender dob")
+        .sort({ fullName: 1 });
+
+        return res.status(200).json({
+            success: true,
+            patients,
+        });
+
+    } catch(error) {
+        console.error("Get My Patient Error: ", error.message);
+
+        return res.status(500).json({
+            success: false,
+            message: "Unable to fetch Patients",
+        });
+    }
+}
