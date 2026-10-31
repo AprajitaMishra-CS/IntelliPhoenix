@@ -2,6 +2,7 @@ import bcrypt from "bcryptjs";
 import validator from "validator";
 import User from "../models/User.js";
 import Appointment from "../models/Appointment.js";
+import Notification from "../models/Notification.js";
 
 export async function createDoctor(req, res) {
     try {
@@ -42,6 +43,23 @@ export async function createDoctor(req, res) {
             acceptedTerms: true,
             role: "doctor",
         });
+
+        try {
+            const admins = await User.find({ role: "admin" }).select("_id");
+
+            if(admins.length > 0){
+                await Notification.insertMany(
+                    admins.map((admin) => ({
+                        recipient: admin._id,
+                        title: "New Doctor Added",
+                        message: `Dr. ${doctor.fullName} has been added to IntelliPhoenix.`,
+                        type: "System",
+                    }))
+                );
+            }
+        } catch(error) {
+            console.error("Admin notification error: ", console.error);
+        }
 
         return res.status(201).json({
             success: true,

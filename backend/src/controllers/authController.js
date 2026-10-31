@@ -2,6 +2,7 @@ import bcrypt from "bcryptjs";
 import validator from "validator";
 import User from "../models/User.js";
 import jwt from "jsonwebtoken";
+import Notification from "../models/Notification.js";
 
 export async function registerUser(req, res) {
     try {
@@ -72,6 +73,24 @@ export async function registerUser(req, res) {
             acceptedTerms: true,
             role: "patient",
         });
+
+        try {
+            const admins = await User.find({ role: "admin" }).select("_id");
+
+            if(admins.length > 0){
+                await Notification.insertMany(
+                    admins.map((admin) => ({
+                        recipient: admin._id,
+                        title: "New Patient Registered",
+                        message: `${user.fullName} has registered on IntelliPhoenix.`,
+                        type: "System",
+                    }))
+                );
+            }
+
+        } catch(error) {
+            console.error("Admin notification error: ", error.message);
+        }
 
         return res.status(201).json({
             success: true,

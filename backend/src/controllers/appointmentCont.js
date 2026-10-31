@@ -58,6 +58,24 @@ export async function bookAppointment(req, res){
             type: "Appointment",
         });
 
+        try {
+            const admins = await User.find({ role: "admin" }).select("_id");
+
+            if(admins.length > 0){
+                await Notification.insertMany(
+                    admins.map((admin) => ({
+                        recipient: admin._id,
+                        title: "New Appointment Booked",
+                        message: `${patient?.fullName || "A Patient"} has booked a new appointment with Dr. ${doctor.fullName}.`,
+                        type: "Appointment",
+                    }))
+                );
+            }
+
+        } catch(error) {
+            console.error("Admin appointment notification error: ", error.message);
+        }
+
         return res.status(201).json({
             success: true,
             message: "Appointment booked successfully", 
