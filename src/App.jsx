@@ -19,6 +19,7 @@ import MedicalRecords from './pages/MedicalRecords'
 import Prescriptions from './pages/Prescriptions'
 import Notifications from './pages/Notifications'
 import DoctorDashboard from './pages/DoctorDashboard'
+import AdminDashboard from './pages/AdminDashboard'
 
 function App() {
   return (
@@ -46,6 +47,7 @@ function App() {
           <Route path='/notifications' element={<Notifications/>} />
 
           <Route path='/doctor-dashboard' element={<DoctorDashboard/>} />
+          <Route path='/admin-dashboard' element={<AdminDashboard/>} />
         </Routes>
       </BrowserRouter>
     </>

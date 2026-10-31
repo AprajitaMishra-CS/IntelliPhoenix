@@ -69,6 +69,8 @@ export default function Login() {
 
             if(data.user.role === "doctor"){
                 navigate("/doctor-dashboard");
+            } else if(data.user.role === "admin"){
+                navigate("/admin-dashboard");
             } else {
                 navigate("/dashboard");
             }

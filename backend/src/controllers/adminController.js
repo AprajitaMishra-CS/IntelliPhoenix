@@ -1,6 +1,7 @@
 import bcrypt from "bcryptjs";
 import validator from "validator";
 import User from "../models/User.js";
+import Appointment from "../models/Appointment.js";
 
 export async function createDoctor(req, res) {
     try {
@@ -33,9 +34,9 @@ export async function createDoctor(req, res) {
             dob: req.body.dob,
             gender: req.body.gender,
             address: {
-                city: req.body.city,
-                state: req.body.state,
-                country: req.body.country,
+                city: req.body.address.city,
+                state: req.body.address.state,
+                country: req.body.address.country,
             },
             password: hashedPassword,
             acceptedTerms: true,
@@ -78,6 +79,134 @@ export async function createDoctor(req, res) {
         return res.status(500).json({
             success: false,
             message: "Could not create doctor account.",
+        });
+    }
+}
+
+export async function getAdminStats(req, res){
+    try {
+        const [ totalUsers, totalPatients, totalDoctors, totalAppointments, pendingAppointments, confirmedAppointments, completedAppointments, ] = await Promise.all([
+            User.countDocuments(),
+            User.countDocuments({ role: "patient" }),
+            User.countDocuments({ role: "doctor" }),
+            Appointment.countDocuments(),
+            Appointment.countDocuments({ status: "pending" }),
+            Appointment.countDocuments({ status: "confirmed" }),
+            Appointment.countDocuments({ status: "completed" }),
+        ]);
+
+        return res.status(200).json({
+            success: true,
+            stats: {
+                totalUsers, 
+                totalPatients, 
+                totalDoctors, 
+                totalAppointments, 
+                pendingAppointments, 
+                confirmedAppointments, 
+                completedAppointments,
+            },
+        });
+
+    } catch(error) {
+        console.error("Admin stats error: ", error.message);
+
+        return res.status(500).json({
+            success: false,
+            message: "Unable to fetch admin statistics",
+        });
+    }
+}
+
+// count of patients
+export async function getAllPatients(req, res){
+    try {
+        const patients = await User.find({ role: "patient" })
+        .select("fullName email phone gender dob")
+        .sort({ createdAt: -1 });
+
+        return res.status(200).json({
+            success: true,
+            count: patients.length,
+            patients,
+        });
+
+    } catch(error) {
+        console.log("Get all patient error: ", error.message);
+
+        return res.status(500).json({
+            success: false,
+            message: "Unable to fetch patients",
+        });
+    }
+}
+
+// count of doctor
+export async function getAllDoctors(req, res){
+    try {
+        const doctors = await User.find({ role: "doctor" })
+        .select("fullName email phone gender dob")
+        .sort({ createdAt: -1 });
+
+        return res.status(200).json({
+            success: true,
+            count: doctors.length,
+            doctors,
+        });
+
+    } catch(error) {
+        console.log("Get all doctors error: ", error.message);
+
+        return res.status(500).json({
+            success: false,
+            message: "Unable to fetch doctors",
+        });
+    }
+}
+
+// get all appointments 
+export async function getAllAppointments(req, res) {
+    try {
+        const appointments = await Appointment.find()
+        .populate("patient", "fullName email phone")
+        .populate("doctor", "fullName email phone")
+        .sort({ createdAt: -1 });
+
+        return res.status(200).json({
+            success: true,
+            count: appointments.length,
+            appointments,
+        });
+
+    } catch(error) {
+        console.error("Get all appointment error: ", error.message);
+
+        return res.status(500).json({
+            success: false,
+            message: "Unable to fetch appointments.",
+        });
+    }
+}
+
+// get all users
+export async function getAllUsers(req, res) {
+    try {
+        const users = await User.find()
+        .select("fullName email phone role gender createdAt")
+        .sort({ createdAt: -1 });
+
+        return res.status(200).json({
+            success: true,
+            count: users.length,
+            users,
+        });
+
+    } catch(error) {
+        console.error("Get all users error: ", error.message);
+
+        return res.status(500).json({
+            success: false,
+            message: "Unable to fetch Users.",
         });
     }
 }
