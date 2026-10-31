@@ -44,9 +44,21 @@ export default function DoctorDashboard() {
     const [prescriptions, setPrescriptions] = useState([]);
     const [prescriptionsLoading, setPrescriptionsLoading] = useState(false);
     const [prescriptionsError, setPrescriptionsError] = useState("");
-    const [notifications, setNotifications] = useState([]);
-    const [unreadCount, setUnreadCount] = useState(0);
-    const [showNotification, setShowNotifications] = useState(false);
+    const [showPrescriptionForm, setShowPrescriptionForm] = useState(false);
+    const [submitPrescription, setSubmitPrescription] = useState(false);
+    const [prescriptionSuccess, setPrescriptionSuccess] = useState("");
+    const [prescriptionFormError, setPrescriptionFormError] = useState("");
+
+    const [prescriptionForm, setPrescriptionForm] = useState({
+        patientId: "",
+        diagnosis: "",
+        medicineName: "",
+        dosage: "",
+        frequency: "",
+        duration: "",
+        instructions: "",
+        notes: "",
+    });
 
     const selectTab = (tab) => {
         setActiveTab(tab);
@@ -192,6 +204,68 @@ export default function DoctorDashboard() {
         },
     ];
 
+    const handleCreatePrescription = async (e) => {
+        e.preventDefault();
+
+        try {
+            setSubmitPrescription(true);
+            setPrescriptionFormError("");
+            setPrescriptionSuccess("");
+
+            const token = sessionStorage.getItem("token");
+
+            const response = await fetch(`${API_URL}/prescriptions`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify({
+                    patientId: prescriptionForm.patientId,
+                    diagnosis: prescriptionForm.diagnosis,
+                    medicines: [
+                        {
+                            medicineName: prescriptionForm.medicineName,
+                            dosage: prescriptionForm.dosage,
+                            frequency: prescriptionForm.frequency,
+                            duration: prescriptionForm.duration,
+                            instructions: prescriptionForm.instructions,
+                        },
+                    ],
+                    notes: prescriptionForm.notes,
+                }),
+            });
+
+            const data = await response.json();
+
+            if(!response.ok){
+                throw new Error(data.message || "Unable to create prescription.");
+            }
+
+            setPrescriptionSuccess("Prescription issued successfully.");
+
+            setPrescriptionForm({
+                patientId: "",
+                diagnosis: "",
+                medicineName: "",
+                dosage: "",
+                frequency: "",
+                duration: "",
+                instructions: "",
+                notes: "",
+            });
+
+            setShowPrescriptionForm(false);
+
+            await fetchDoctorPrescriptions();
+
+        } catch(error) {
+            setPrescriptionFormError(error.message);
+        } finally {
+            setSubmitPrescription(false);
+        }
+    };
+
     const appointmentTable = (
         <div className="overflow-x-auto">
             {loading ? (
@@ -299,7 +373,7 @@ export default function DoctorDashboard() {
     }
 
     useEffect(() => {
-        if(activeTab === "Patients"){
+        if(activeTab === "Patients" || activeTab === "Prescriptions"){
             fetchPatients();
         }
     }, [activeTab]);
@@ -435,15 +509,110 @@ export default function DoctorDashboard() {
             case "Prescriptions":
                 return (
                     <section className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-                        <div className="border-b border-slate-100 p-5 sm:p-6">
-                            <h2 className="text-lg font-bold text-slate-900">
-                                Prescription Management
-                            </h2>
+                        <div className="flex flex-col gap-4 border-b border-slate-100 p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
+                            <div>
+                                <h2 className="text-lg font-bold text-slate-900">
+                                    Prescription Management
+                                </h2>
 
-                            <p className="mt-1 text-sm text-slate-500">
-                                Review prescriptions you have issued.
-                            </p>
+                                <p className="mt-1 text-sm text-slate-500">
+                                    Create and manage patient prescriptions.
+                                </p>
+                            </div>
+
+                            <button type="button" onClick={() => {
+                                setShowPrescriptionForm(!showPrescriptionForm);
+                                setPrescriptionSuccess("");
+                                setPrescriptionFormError("");
+                            }} className="rounded-xl bg-sky-700 px-4 py-2.5 text-sm font-semibold text-white hover:bg-sky-800">
+                                {showPrescriptionForm ? "Close Form" : "+ Create Prescription"}
+                            </button>
                         </div>
+
+                        {showPrescriptionForm && (
+                            <form onSubmit={handleCreatePrescription} className="space-y-5 border-b border-slate-100 bg-slate-50 p-5 sm:p-6">
+                                <h3 className="text-lg font-bold text-slate-900">
+                                    New Patient Prescription
+                                </h3>
+
+                                {prescriptionFormError && (
+                                    <p className="rounded-lg bg-red-50 p-3 text-sm text-red-700">
+                                        {prescriptionFormError}
+                                    </p>
+                                )}
+
+                                <div>
+                                    <label className="mb-2 block text-sm font-medium text-slate-700">
+                                        Select Patient
+                                    </label>
+
+                                    <select required value={prescriptionForm.patientId} onChange={(e) => setPrescriptionForm({ ...prescriptionForm, patientId: e.target.value, })} className="w-full rounded-xl border border-slate-200 bg-white p-3 text-sm">
+                                        <option value="">Choose a patient</option>
+
+                                        {patients.map((patient) => (
+                                            <option key={patient._id} value={patient._id}>
+                                                {patient.fullName} ({patient.email})
+                                            </option>
+                                        ))}
+                                    </select>
+
+                                    {patients.length === 0 && (
+                                        <p className="mt-1 text-xs text-sky-700">
+                                            No patient available. A patient must have a appointment with you first.
+                                        </p>
+                                    )}
+                                </div>
+
+                                <div>
+                                    <label className="mb-2 block text-sm font-medium text-slate-700">
+                                        Diagnosis
+                                    </label>
+
+                                    <input required value={prescriptionForm.diagnosis} onChange={(e) => setPrescriptionForm({ ...prescriptionForm, diagnosis: e.target.value, })} placeholder="Enter diagnosis" className="w-full rounded-xl border border-slate-200 bg-white p-3 text-sm" />
+                                </div>
+
+                                <h4 className="font-semibold text-slate-800">
+                                    Medicine Details
+                                </h4>
+
+                                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                                    {[
+                                        {name: "medicineName", label: "Medicine Name *", placeholder: "e.g. Paracetamol"},
+                                        {name: "dosage", label: "Dosage *", placeholder: "e.g. 500 mg"},
+                                        {name: "frequency", label: "Frequency *", placeholder: "e.g. Twice a day"},
+                                        {name: "duration", label: "Duration *", placeholder: "e.g. 5 days"},
+                                    ].map((field) => (
+                                        <div key={field.name}>
+                                            <label className="mb-2 block text-sm font-medium text-slate-700">
+                                                {field.label}
+                                            </label>
+
+                                            <input required value={prescriptionForm[field.name]} onChange={(e) => setPrescriptionForm({ ...prescriptionForm, [field.name]: e.target.value, })} placeholder={field.placeholder} className="w-full rounded-xl border border-slate-200 bg-white p-3 text-sm" />
+                                        </div>
+                                    ))}
+                                </div>
+
+                                <div>
+                                    <label className="mb-2 block text-sm font-medium text-slate-700">
+                                        Medicine Instructions
+                                    </label>
+
+                                    <input value={prescriptionForm.instructions} onChange={(e) => setPrescriptionForm({ ...prescriptionForm, instructions: e.target.value, })} placeholder="e.g. Take after meals" className="w-full rounded-xl border border-slate-200 bg-white p-3 text-sm" />
+                                </div>
+
+                                <div>
+                                    <label className="mb-2 block text-sm font-medium text-slate-700">
+                                        Additional Notes
+                                    </label>
+
+                                    <textarea rows={3} value={prescriptionForm.notes} onChange={(e) => setPrescriptionForm({ ...prescriptionForm, notes: e.target.value, })} placeholder="Additional advice for the patient..." className="w-full rounded-xl border border-slate-200 bg-white p-3 text-sm" />
+                                </div>
+
+                                <button type="submit" disabled={submitPrescription || patients.length === 0} className="rounded-xl bg-sky-700 px-6 py-3 text-sm font-semibold text-white hover:bg-sky-800 disabled:cursor-not-allowed disabled:opacity-50">
+                                    {submitPrescription ? "Issuing..." : "Issue Prescription"}
+                                </button>
+                            </form>
+                        )}
                         
                         {prescriptionsLoading ? (
                             <p className="p-8 text-center text-slate-500">
@@ -725,7 +894,7 @@ export default function DoctorDashboard() {
                         </div>
                     </div>
 
-                    <button type="button" onClick={handleLogout} className="mt-auto flex text-center w-full items-center gap-3 rounded-xl px-3 py-3 text-left text-sm font-medium bg-rose-50 text-rose-600 hover:bg-rose-50">
+                    <button type="button" onClick={handleLogout} className="mt-2 flex text-center w-full items-center gap-3 rounded-xl px-3 py-3 text-left text-sm font-medium bg-rose-50 text-rose-600 hover:bg-rose-50">
                         <LogOut size={19} />
                         Logout
                     </button>
