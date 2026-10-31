@@ -217,10 +217,10 @@ export async function updateAppointmentStatus(req, res) {
             });
         }
 
-        if(!["confirmed", "rejected"].includes(status)){
+        if(!["confirmed", "rejected", "completed"].includes(status)){
             return res.status(400).json({
                 success: false,
-                message: "Status must be confirmed or rejected",
+                message: "Status must be confirmed or rejected or completed",
             });
         }
 
@@ -228,7 +228,7 @@ export async function updateAppointmentStatus(req, res) {
             {
                 _id: appointmentId,
                 doctor: req.user.userId,
-                status: "pending",
+                status: status === "completed" ? "confirmed" : "pending",
             },
             {
                 $set: { status },
@@ -248,8 +248,8 @@ export async function updateAppointmentStatus(req, res) {
 
         await Notification.create({
             recipient: appointment.patient._id,
-            title: status === "confirmed" ? "Appointment Confirmed" : "Appointment Rejected",
-            message: status === "confirmed" ? "Your doctor has confirmed your appointment." : "Your doctor has rejected your appointment request.",
+            title: status === "confirmed" ? "Appointment Confirmed" : status === "rejected" ? "Appointment Rejected" : "Appointment Completed",
+            message: status === "confirmed" ? "Your doctor has confirmed your appointment." : status === "rejected" ? "Your doctor has rejected your appointment request." : "Your appointment has been marked as completed by your doctor.",
             type: "Appointment",
         });
 

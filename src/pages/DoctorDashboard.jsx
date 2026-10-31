@@ -324,10 +324,14 @@ export default function DoctorDashboard() {
                                                 Confirm
                                             </button>
 
-                                            <button disabled={updatingId === appointment._id} onClick={() => handleAppointmentStatus(appointment._id, "rejected")} className="rounded-lg bg-sky-50 px-3 py-2 text-xs font-semibold text-sky-700 hover:bg-sky-100 disabled:opacity-50">
+                                            <button disabled={updatingId === appointment._id} onClick={() => handleAppointmentStatus(appointment._id, "rejected")} className="rounded-lg bg-red-50 px-3 py-2 text-xs font-semibold text-red-700 hover:bg-red-100 disabled:opacity-50">
                                                 Reject
                                             </button>
                                         </div>
+                                    ) : appointment.status === "confirmed" ? (
+                                        <button disabled={updatingId === appointment._id} onClick={() => handleAppointmentStatus(appointment._id, "completed")} className="rounded-lg bg-emerald-50 px-3 py-2 text-xs font-semibold text-emerald-700 hover:bg-emerald-100 disabled:opacity-50">
+                                            {updatingId === appointment._id ? "Updating..." : "Mark as Completed"}
+                                        </button>
                                     ) : (
                                         <span className="text-xs text-slate-400">
                                             No actions available
