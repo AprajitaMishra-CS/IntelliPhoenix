@@ -16,8 +16,9 @@ const initialForm = {
 
 export default function Contact() {
     const [ formData, setFormData ] = useState(initialForm);
-    const [ status, setStatus] = useState(""); 
-
+    const [ status, setStatus] = useState("");
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    
     function handleChange(event) {
         const {name, value, type, checked} = event.target;
 
@@ -29,12 +30,47 @@ export default function Contact() {
         setStatus("");
     }
 
-    function handleSubmit(event) {
+    async function handleSubmit(event) {
         event.preventDefault();
 
-        setStatus(
-            "Your form is validated, but message submission is not connected yet."
-        );
+        if(!formData.agree) {
+            setStatus("Please accept the terms and conditions.");
+            return;
+        }
+
+        try {
+            setIsSubmitting(true);
+            setStatus("");
+
+            const response = await fetch("http://localhost:8080/api/contact", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    name: formData.name.trim(),
+                    email: formData.email.trim(),
+                    phone: formData.phone.trim(),
+                    subject: formData.subject.trim(),
+                    message: formData.message.trim(),
+                }),
+            });
+
+            const data = await response.json();
+
+            if(!response.ok){
+                throw new Error(data.message || "Failed to send message.");
+            }
+
+            setStatus("success: " + data.message);
+            setFormData(initialForm);
+
+        } catch(error) {
+            console.error("Contact Form error: ", error);
+            setStatus("error: " + error.message);
+        } finally {
+            setIsSubmitting(false);
+        }
     }
 
     const inputClass = "mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
@@ -103,7 +139,7 @@ export default function Contact() {
 
                                 <div>
                                     <label htmlFor="message" className="text-sm font-medium text-slate-700">Message</label>
-                                    <input id="message" name="message" row={4} placeholder="Write your message..." value={formData.message} onChange={handleChange} className={`${inputClass} resize-y`} required /> 
+                                    <textarea id="message" name="message" row={4} placeholder="Write your message..." value={formData.message} onChange={handleChange} className={`${inputClass} resize-y`} required /> 
                                 </div>
 
                                 <label className="flex items-start gap-3 text-sm text-slate-700">
@@ -126,11 +162,18 @@ export default function Contact() {
                                         Reset
                                     </Button>
 
-                                    <Button type="submit">
-                                        Send Message <span aria-hidden="true">&rarr;</span>
+                                    <Button type="submit" disabled={isSubmitting}>
+                                        {isSubmitting ? "Sending..." : "Send Message"}
+                                        {isSubmitting && <span aria-hidden="true">&rarr;</span> }
                                     </Button>
                                 </div>
                             </form>
+
+                            {status && (
+                                <p role="status" className={`mt-4 text-center text-sm font-medium ${status.startsWith("success:") ? "text-green-600" : "text-red-600"}`}>
+                                    {status.replace(/^(success:|error:)\s*/,"")}
+                                </p>
+                            )}
                         </div>
 
                         {/* Contact Information */}

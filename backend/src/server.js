@@ -14,6 +14,7 @@ import profileRoutes from "./routes/profileRoutes.js";
 import medicalRecordRoutes from "./routes/medicalRecordRoutes.js";
 import prescriptionRoutes from "./routes/prescriptionRoutes.js";
 import notificationRoutes from "./routes/notificationRoutes.js";
+import contactRoutes from "./routes/contactRoutes.js";
 
 dotenv.config();
 
@@ -35,6 +36,7 @@ app.use("/api/profile", profileRoutes);
 app.use("/api/medical-records", medicalRecordRoutes);
 app.use("/api/prescriptions", prescriptionRoutes);
 app.use("/api/notifications", notificationRoutes);
+app.use("/api/contact", contactRoutes);
 
 // Basic API Routes 
 app.get("/", (req, res) => {

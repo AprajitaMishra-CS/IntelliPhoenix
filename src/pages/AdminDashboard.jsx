@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { LayoutDashboard, Users, UserRound, CalendarDays, Bell, LogOut, Menu, X, CheckCircle2, Clock, Stethoscope, RefreshCw, } from "lucide-react";
+import { LayoutDashboard, Users, UserRound, CalendarDays, Bell, LogOut, Menu, X, CheckCircle2, Clock, Stethoscope, RefreshCw, MessageCircle } from "lucide-react";
 import PatientsManagement from "../components/admin/PatientsManagement";
 import DoctorsManagement from "../components/admin/DoctorsManagement";
 import AppointmentsManagement from "../components/admin/AppointmentsManagement";
 import UsersManagement from "../components/admin/UsersManagement";
 import Notifications from "./Notifications";
+import MessagesManagement from "../components/admin/MessagesManagement";
 
 const API_URL = "http://localhost:8080/api";
 
@@ -15,6 +16,7 @@ const navigation = [
     { label: "Doctors", icon: Stethoscope },
     { label: "Appointments", icon: CalendarDays },
     { label: "Users", icon: UserRound },
+    { label: "Messages", icon: MessageCircle },
     { label: "Notifications", icon: Bell },
 ];
 
@@ -255,6 +257,8 @@ export default function AdminDashboard({ initialTab = "Overview" }) {
                         {activeTab === "Appointments" && <AppointmentsManagement/>}
 
                         {activeTab === "Users" && <UsersManagement/>}
+
+                        {activeTab === "Messages" && <MessagesManagement/>}
 
                         {activeTab === "Notifications" && <Notifications/>}
 
