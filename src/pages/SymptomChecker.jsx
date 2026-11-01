@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-const API_URL = "http://localhost:8080/api/symptoms/check";
+const API_URL = `${import.meta.env.VITE_API_URL}/api/symptoms/check`;
 
 export default function SymptomChecker() {
     const [form, setForm] = useState({

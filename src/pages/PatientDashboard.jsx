@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import HealthTipsCard from "../components/HealthTipsCard";
 
 export default function PatientDashboard() {
-    const API_URL = "http://localhost:8080/api/appointments";
+    const API_URL = `${import.meta.env.VITE_API_URL}/api/appointments`;
 
     const [upcomingAppointment, setUpcomingAppointment] = useState([]);
     const [appointmentsLoading, setAppointmentsLoading] = useState(true);

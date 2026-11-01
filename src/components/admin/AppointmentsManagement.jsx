@@ -21,7 +21,7 @@ const AppointmentsManagement = () => {
             setError("");
 
             const response = await fetch(
-                "http://localhost:8080/api/admin/appointments",
+                `${import.meta.env.VITE_API_URL}/api/admin/appointments`,
                 {
                     headers: {
                         Authorization: `Bearer ${sessionStorage.getItem("token")}`,
@@ -142,7 +142,7 @@ const AppointmentsManagement = () => {
                                         </td>
 
                                         <td className="px-5 py-4 text-sm text-gray-600">
-                                            {appointment.appointmentTime || "N/A"}
+                                            {appointment.appointmentTime ? new Date(`1970-01-01T${appointment.appointmentTime}`).toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit", hour12: true, }) : "N/A"}
                                         </td>
 
                                         <td className="max-w-[200px] px-5 py-4 text-sm text-gray-600">

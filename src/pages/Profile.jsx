@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { UserRound, Pencil, Save, X, Mail, Phone, CalendarDays, MapPin, Venus, LoaderCircle, ShieldCheck } from "lucide-react";
 
-const API_URL = "http://localhost:8080/api/profile";
+const API_URL = `${import.meta.env.VITE_API_URL}/api/profile`;
 
 const emptyProfile = {
     fullName: "",

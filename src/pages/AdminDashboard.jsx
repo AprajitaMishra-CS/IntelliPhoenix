@@ -8,7 +8,7 @@ import UsersManagement from "../components/admin/UsersManagement";
 import Notifications from "./Notifications";
 import MessagesManagement from "../components/admin/MessagesManagement";
 
-const API_URL = "http://localhost:8080/api";
+const API_URL = `${import.meta.env.VITE_API_URL}/api`;
 
 const navigation = [
     { label: "Overview", icon: LayoutDashboard },

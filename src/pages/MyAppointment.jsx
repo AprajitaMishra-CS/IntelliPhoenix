@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { CalendarDays, Clock, UserRound, RefreshCw, XCircle } from "lucide-react";
 
-const API_URL = "http://localhost:8080/api/appointments";
+const API_URL = `${import.meta.env.VITE_API_URL}/api/appointments`;
 
 export default function MyAppointments() {
     const [appointments, setAppointments] = useState([]); 

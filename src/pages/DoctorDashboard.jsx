@@ -26,7 +26,7 @@ function EmptyState({ icon: Icon, title, description }) {
 }
 
 export default function DoctorDashboard({ initialTab = "Overview" }) {
-    const API_URL = "http://localhost:8080/api";
+    const API_URL = `${import.meta.env.VITE_API_URL}/api`;
 
     const navigate = useNavigate();
 
@@ -616,7 +616,7 @@ export default function DoctorDashboard({ initialTab = "Overview" }) {
                                     <textarea rows={3} value={prescriptionForm.notes} onChange={(e) => setPrescriptionForm({ ...prescriptionForm, notes: e.target.value, })} placeholder="Additional advice for the patient..." className="w-full rounded-xl border border-slate-200 bg-white p-3 text-sm" />
                                 </div>
 
-                                <button type="submit" disabled={submitPrescription || patients.length === 0} className="rounded-xl bg-sky-700 px-6 py-3 text-sm font-semibold text-white hover:bg-sky-800 disabled:cursor-not-allowed disabled:opacity-50">
+                                <button type="submit" disabled={submitPrescription || patients.length === 0} className="rounded-xl bg-[#080b16] px-6 py-3 text-sm font-semibold text-white hover:bg-sky-800 disabled:cursor-not-allowed disabled:opacity-50">
                                     {submitPrescription ? "Issuing..." : "Issue Prescription"}
                                 </button>
                             </form>
@@ -898,7 +898,7 @@ export default function DoctorDashboard({ initialTab = "Overview" }) {
 
                         <div className="min-w-0 flex-1">
                             <p className="truncate text-sm font-semibold text-slate-800">
-                                Doctor Account
+                                Dr. {JSON.parse(sessionStorage.getItem("user") || "{}").fullName || "Doctor Account"}
                             </p>
 
                             <p className="text-xs text-slate-500">IntelliPhoenix</p>

@@ -19,6 +19,11 @@ const appointmentSchema = new mongoose.Schema(
             required: true,
         },
 
+        appointmentTime: {
+            type: String,
+            required: true,
+        },
+
         reason: {
             type: String,
             trim: true,

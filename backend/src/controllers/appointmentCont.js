@@ -15,8 +15,16 @@ export async function bookAppointment(req, res){
         }
 
         const date = new Date(appointmentDate);
+        const appointmentTime = appointmentDate.split("T")[1];
 
         if(!appointmentDate || Number.isNaN(date.getTime()) || date <= new Date()) {
+            return res.status(400).json({
+                success: false,
+                message: "Please select a valid future appointment date and time",
+            });
+        }
+
+        if(typeof appointmentTime !== "string" || !/^([01]\d|2[0-3]):[0-5]\d$/.test(appointmentTime)){
             return res.status(400).json({
                 success: false,
                 message: "Please select a valid future appointment date and time",
@@ -45,7 +53,7 @@ export async function bookAppointment(req, res){
         const appointment = await Appointment.create({
             patient: req.user.userId,
             doctor: doctor._id,
-            appointmentDate: date,
+            appointmentDate: date, appointmentTime,
             reason: reason.trim(),
         });
 

@@ -16,7 +16,7 @@ export default function MessagesManagement() {
             const token = sessionStorage.getItem("token");
 
             const response = await fetch(
-                "http://localhost:8080/api/contact",
+                `${import.meta.env.VITE_API_URL}/api/contact`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -49,7 +49,7 @@ export default function MessagesManagement() {
             const token = sessionStorage.getItem("token");
 
             const response = await fetch(
-                `http://localhost:8080/api/contact/${id}/status`,
+                `${import.meta.env.VITE_API_URL}/api/contact/${id}/status`,
                 {
                     method: "PATCH",
                     headers: {
@@ -101,7 +101,7 @@ export default function MessagesManagement() {
                     </p>
                 </div>
 
-                <button onClick={fetchMessages} className="flex items-center gap-2 rounded-lg border px-4 py-2 text-sm hover:bg-slate-50" >
+                <button onClick={fetchMessages} className="flex items-center gap-2 rounded-lg border border-slate-400 px-4 py-2 text-sm hover:bg-slate-50" >
                     <RefreshCw size={16} />
                     Refresh
                 </button>
@@ -114,30 +114,30 @@ export default function MessagesManagement() {
             )}
 
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-                <div className="rounded-xl border bg-white p-5">
+                <div className="rounded-xl border border-slate-400 bg-white p-5">
                     <p className="text-sm text-slate-500">Total Messages</p>
 
                     <h3 className="mt-2 text-3xl font-bold">{messages.length}</h3>
                 </div>
 
-                <div className="rounded-xl border bg-white p-5">
+                <div className="rounded-xl border border-slate-400 bg-white p-5">
                     <p className="text-sm text-slate-500">Pending</p>
 
-                    <h3 className="mt-2 text-3xl font-bold text-amber-600">
+                    <h3 className="mt-2 text-3xl font-bold text-amber-400">
                         {pendingCount}
                     </h3>
                 </div>
 
-                <div className="rounded-xl border bg-white p-5">
+                <div className="rounded-xl border border-slate-400 bg-white p-5">
                     <p className="text-sm text-slate-500">Resolved</p>
 
-                    <h3 className="mt-2 text-3xl font-bold text-green-600">
+                    <h3 className="mt-2 text-3xl font-bold text-green-400">
                         {resolvedCount}
                     </h3>
                 </div>
             </div>
 
-            <div className="overflow-x-auto rounded-xl border bg-white">
+            <div className="overflow-x-auto rounded-xl border border-slate-400 bg-white">
                 <table className="w-full min-w-[750px] text-left text-sm">
                     <thead className="bg-slate-50 text-slate-600">
                         <tr>
@@ -158,7 +158,7 @@ export default function MessagesManagement() {
                             </tr>
                         ) : (
                             messages.map((item) => (
-                                <tr key={item._id} className="border-t">
+                                <tr key={item._id} className="border-t border-slate-400">
                                     <td className="p-4">
                                         <p className="font-semibold">{item.name}</p>
                                         <p className="text-slate-500">{item.email}</p>

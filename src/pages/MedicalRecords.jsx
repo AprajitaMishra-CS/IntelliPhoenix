@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 import { BsCapsulePill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
-const API_URL = "http://localhost:8080/api/medical-records/my";
+const API_URL = `${import.meta.env.VITE_API_URL}/api/medical-records/my`;
 
 function formatDate(date) {
     if(!date){ 

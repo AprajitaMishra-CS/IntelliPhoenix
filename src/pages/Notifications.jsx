@@ -2,7 +2,7 @@ import { AlarmClock, Bell, Calendar1, Megaphone, RefreshCw } from "lucide-react"
 import { useCallback, useEffect, useState } from "react";
 import { BsCapsulePill } from "react-icons/bs";
 
-const API_URL = "http://localhost:8080/api/notifications";
+const API_URL = `${import.meta.env.VITE_API_URL}/api/notifications`;
 
 function formatDate(date) {
     if(!date){

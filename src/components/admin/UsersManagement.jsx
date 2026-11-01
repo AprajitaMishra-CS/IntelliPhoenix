@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 
-const API_URL = "http://localhost:8080/api";
+const API_URL = `${import.meta.env.VITE_API_URL}/api`;
 
 export default function UsersManagement() {
     const [users, setUsers] = useState([]);
