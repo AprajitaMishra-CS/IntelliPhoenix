@@ -532,7 +532,7 @@ export default function DoctorDashboard({ initialTab = "Overview" }) {
                                 setShowPrescriptionForm(!showPrescriptionForm);
                                 setPrescriptionSuccess("");
                                 setPrescriptionFormError("");
-                            }} className="rounded-xl bg-sky-700 px-4 py-2.5 text-sm font-semibold text-white hover:bg-sky-800">
+                            }} className="rounded-xl bg-[#080b16] px-4 py-2.5 text-sm font-semibold text-white hover:bg-sky-800">
                                 {showPrescriptionForm ? "Close Form" : "+ Create Prescription"}
                             </button>
                         </div>

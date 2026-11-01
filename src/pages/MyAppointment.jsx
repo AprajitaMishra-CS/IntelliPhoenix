@@ -146,7 +146,7 @@ export default function MyAppointments() {
                             Refresh
                         </button>
 
-                        <Link to="/appointment/book" className="rounded-lg bg-blue-700 px-4 py-2.5 text-center font-medium text-white hover:bg-blue-800">
+                        <Link to="/appointment/book" className="rounded-lg bg-[#080b16] px-4 py-2.5 text-center font-medium text-white hover:bg-blue-800">
                             Book Appointment
                         </Link>
                     </div>

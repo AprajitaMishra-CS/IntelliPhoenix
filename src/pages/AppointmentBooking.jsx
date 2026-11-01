@@ -187,7 +187,7 @@ export default function AppointmentBooking(){
                         </p>
                     </div>
 
-                    <button type="submit" disabled={submitting || loadingDoctors || doctors.length === 0} className="w-full rounded-xl bg-blue-700 px-5 py-3 font-semibold text-white transition hover:bg-blue-800 disabled: cursor-not-allowed disabled:opacity-60">
+                    <button type="submit" disabled={submitting || loadingDoctors || doctors.length === 0} className="w-full rounded-xl bg-[#080b16] px-5 py-3 font-semibold text-white transition hover:bg-blue-800 disabled: cursor-not-allowed disabled:opacity-60">
                         {submitting ? "booking..." : "Book Appointment"}
                     </button>
                 </form>

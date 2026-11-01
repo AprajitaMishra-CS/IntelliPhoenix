@@ -148,7 +148,7 @@ const DoctorsManagement = () => {
                         </p>
                     </div>
 
-                    <button onClick={() => setShowForm(!showForm)} className="rounded-lg bg-sky-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-sky-700">
+                    <button onClick={() => setShowForm(!showForm)} className="rounded-lg bg-[#080b16] px-4 py-3 text-sm font-semibold text-white transition hover:bg-sky-700">
                         {showForm ? "Close Form" : "+ Add Doctor"}
                     </button>
                 </div>
@@ -189,7 +189,7 @@ const DoctorsManagement = () => {
                         <p className="text-sm text-red-500">{formError}</p>
                     )}
 
-                    <button type="submit" disabled={submitting} className="rounded-lg bg-sky-600 px-6 py-3 text-sm font-semibold text-white hover:bg-sky-700 disabled:opacity-50">
+                    <button type="submit" disabled={submitting} className="rounded-lg bg-[#080b16] px-6 py-3 text-sm font-semibold text-white hover:bg-sky-700 disabled:opacity-50">
                         {submitting ? "Creating Doctor..." : "Create Doctor"}
                     </button>
                 </form>

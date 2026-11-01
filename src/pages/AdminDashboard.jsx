@@ -206,7 +206,7 @@ export default function AdminDashboard({ initialTab = "Overview" }) {
                                         Platform Overview
                                     </h3>
 
-                                    <button onClick={fetchAdminStats} className="flex flex-row rounded-lg bg-sky-500 px-4 py-2 text-sm font-semibold text-white hover:bg-sky-700" >
+                                    <button onClick={fetchAdminStats} className="flex flex-row rounded-lg bg-[#080b16] px-4 py-2 text-sm font-semibold text-white hover:bg-sky-700" >
                                         <RefreshCw size={18} className="mr-2 my-1" />
                                         Refresh
                                     </button>

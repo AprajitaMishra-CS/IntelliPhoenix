@@ -73,7 +73,7 @@ export default function UsersManagement() {
                     </p>
                 </div>
 
-                <button onClick={fetchUsers} className="rounded-lg bg-sky-600 px-4 py-2 text-sm font-medium text-white hover:bg-sky-700" >
+                <button onClick={fetchUsers} className="rounded-lg bg-[#080b16] px-4 py-2 text-sm font-medium text-white hover:bg-sky-700" >
                     Refresh Users
                 </button>
             </div>
