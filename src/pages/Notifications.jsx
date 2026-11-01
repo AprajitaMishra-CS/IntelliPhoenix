@@ -1,7 +1,6 @@
 import { AlarmClock, Bell, Calendar1, Megaphone, RefreshCw } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import { BsCapsulePill } from "react-icons/bs";
-import { Link } from "react-router-dom";
 
 const API_URL = "http://localhost:8080/api/notifications";
 

@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 import DashboardNav from "./DashboardNav";
 import DashboardSideNav from "./DashboardSideNav";
 
-export default function PatientLayout() {
+export default function PatientLayout({ children }) {
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
     const closeSidebar = () => setSidebarOpen(false);
@@ -20,7 +20,7 @@ export default function PatientLayout() {
                 <DashboardSideNav sidebarOpen={sidebarOpen} onClose={closeSidebar} />
 
                 <main className="min-w-0 flex-1 p-4 sm:p-6 lg:p-8">
-                    <Outlet />
+                    {children || <Outlet />}
                 </main>
             </div>
         </div>

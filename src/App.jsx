@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Navigate } from "react-router-dom";
 import Layout from './components/Layout'
 import PatientLayout from './components/PatientLayout'
 
@@ -22,6 +23,36 @@ import Notifications from './pages/Notifications'
 import DoctorDashboard from './pages/DoctorDashboard'
 import AdminDashboard from './pages/AdminDashboard'
 
+function RoleBasedNotifications() {
+  const storedUser = sessionStorage.getItem("user");
+
+  let user = {};
+
+  try {
+    user = storedUser ? JSON.parse(storedUser) : {};
+  } catch(error) {
+    user = {};
+  }
+
+  if(user.role === "patient") {
+    return (
+      <PatientLayout>
+        <Notifications/>
+      </PatientLayout>
+    );
+  }
+
+  if(user.role === "doctor") {
+    return <DoctorDashboard initialTab="Notifications" />;
+  }
+
+  if(user.role === "admin") {
+    return <AdminDashboard initialTab="Notifications" />;
+  }
+
+  return <Navigate to="/login" replace />;
+}
+
 function App() {
   return (
     <>
@@ -38,21 +69,22 @@ function App() {
             <Route path='/terms' element={<Terms/>}/>
           </Route>
 
-        <Route element={<PatientLayout/>}>
-          <Route path='/dashboard' element={<PatientDashboard/>} />
-          <Route path='/appointment/book' element={<AppointmentBooking/>} />
-          <Route path='/symptom-checker' element={<SymptomChecker/>} />
-          <Route path='/appointments' element={<MyAppointments/>} />
-          <Route path='/profile' element={<Profile/>} />
-          <Route path='/medical-records' element={<MedicalRecords/>} />
-          <Route path='/prescriptions' element={<Prescriptions/>} />
-          <Route path='/notifications' element={<Notifications/>} />
-        </Route>
+          <Route element={<PatientLayout/>}>
+            <Route path='/dashboard' element={<PatientDashboard/>} />
+            <Route path='/appointment/book' element={<AppointmentBooking/>} />
+            <Route path='/symptom-checker' element={<SymptomChecker/>} />
+            <Route path='/appointments' element={<MyAppointments/>} />
+            <Route path='/profile' element={<Profile/>} />
+            <Route path='/medical-records' element={<MedicalRecords/>} />
+            <Route path='/prescriptions' element={<Prescriptions/>} />
+          </Route>
 
-        <Route path='/doctor-dashboard' element={<DoctorDashboard/>} />
-        <Route path='/admin-dashboard' element={<AdminDashboard/>} />
+          <Route path='/notifications' element={<RoleBasedNotifications/>} />
 
-        <Route path='*' element={<NotFound/>}/>
+          <Route path='/doctor-dashboard' element={<DoctorDashboard/>} />
+          <Route path='/admin-dashboard' element={<AdminDashboard/>} />
+
+          <Route path='*' element={<NotFound/>}/>
         </Routes>
       </BrowserRouter>
     </>

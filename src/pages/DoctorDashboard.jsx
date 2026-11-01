@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 import { LayoutDashboard, CalendarDays, Users, FileText, Bell, Menu, X, LogOut, Clock, ArrowUpRight, Activity, CheckCircle2, } from "lucide-react";
 import { Link } from "react-router-dom";
+import Notifications from "./Notifications";
 
 const navigation = [
     { label: "Overview", icon: LayoutDashboard },
     { label: "Appointments", icon: CalendarDays },
     { label: "Patients", icon: Users },
     { label: "Prescriptions", icon: FileText },
+    { label: "Notifications", icon: Bell },
 ];
 
 function EmptyState({ icon: Icon, title, description }) {
@@ -23,14 +25,14 @@ function EmptyState({ icon: Icon, title, description }) {
     );
 }
 
-export default function DoctorDashboard() {
+export default function DoctorDashboard({ initialTab = "Overview" }) {
     const API_URL = "http://localhost:8080/api";
 
     const [appointments, setAppointments] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
     const [updatingId, setUpdatingId] = useState(null);
-    const [activeTab, setActiveTab] = useState("Overview");
+    const [activeTab, setActiveTab] = useState(initialTab);
     const [menuOpen, setMenuOpen] = useState(false);
     const [stats, setStats] = useState({
         totalPatients: 0,
@@ -705,6 +707,9 @@ export default function DoctorDashboard() {
                         )}
                     </section>
                 );
+
+            case "Notifications":
+                return <Notifications />;
 
             default:
                 return (

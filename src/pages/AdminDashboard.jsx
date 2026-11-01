@@ -5,6 +5,7 @@ import PatientsManagement from "../components/admin/PatientsManagement";
 import DoctorsManagement from "../components/admin/DoctorsManagement";
 import AppointmentsManagement from "../components/admin/AppointmentsManagement";
 import UsersManagement from "../components/admin/UsersManagement";
+import Notifications from "./Notifications";
 
 const API_URL = "http://localhost:8080/api";
 
@@ -14,10 +15,11 @@ const navigation = [
     { label: "Doctors", icon: Stethoscope },
     { label: "Appointments", icon: CalendarDays },
     { label: "Users", icon: UserRound },
+    { label: "Notifications", icon: Bell },
 ];
 
-export default function AdminDashboard() {
-    const [activeTab, setActiveTab] = useState("Overview");
+export default function AdminDashboard({ initialTab = "Overview" }) {
+    const [activeTab, setActiveTab] = useState(initialTab);
     const [menuOpen, setMenuOpen] = useState(false);
     const [stats, setStats] = useState({
         totalUsers: 0,
@@ -248,6 +250,8 @@ export default function AdminDashboard() {
                         {activeTab === "Appointments" && <AppointmentsManagement/>}
 
                         {activeTab === "Users" && <UsersManagement/>}
+
+                        {activeTab === "Notifications" && <Notifications/>}
 
                     </div>
 
