@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { LayoutDashboard, Users, UserRound, CalendarDays, Bell, LogOut, Menu, X, CheckCircle2, Clock, Stethoscope, RefreshCw, } from "lucide-react";
 import PatientsManagement from "../components/admin/PatientsManagement";
 import DoctorsManagement from "../components/admin/DoctorsManagement";
@@ -19,6 +19,8 @@ const navigation = [
 ];
 
 export default function AdminDashboard({ initialTab = "Overview" }) {
+    const navigate = useNavigate();
+
     const [activeTab, setActiveTab] = useState(initialTab);
     const [menuOpen, setMenuOpen] = useState(false);
     const [stats, setStats] = useState({
@@ -178,9 +180,12 @@ export default function AdminDashboard({ initialTab = "Overview" }) {
                             </h2>
                         </div>
 
-                        <Link to="/notifications" className="flex flex-row rounded-xl border border-slate-200 px-4 py-2 text-sm text-white font-medium hover:bg-slate-500" >
+                        <button type="button" onClick={() => {
+                            setActiveTab("Notifications");
+                            navigate("/notifications");
+                        }} className="flex flex-row rounded-xl border border-slate-200 px-4 py-2 text-sm text-white font-medium hover:bg-slate-500" >
                             <Bell size={24} />
-                        </Link>
+                        </button>
                     </header>
 
                     <div className="p-5 sm:p-8">
