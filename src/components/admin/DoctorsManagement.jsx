@@ -97,7 +97,7 @@ const DoctorsManagement = () => {
             alert("Doctor added successfully !!");
 
         } catch(error) {
-            setFormData(error.message);
+            setFormError(error.message);
         } finally {
             setSubmitting(false);
         }

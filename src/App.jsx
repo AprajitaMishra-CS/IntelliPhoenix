@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Layout from './components/Layout'
+import PatientLayout from './components/PatientLayout'
 
 import Home from './pages/Home'
 import About from './pages/About'
@@ -35,8 +36,9 @@ function App() {
             <Route path='/register' element={<Register/>}/>
             <Route path='/privacy' element={<Privacy/>}/>
             <Route path='/terms' element={<Terms/>}/>
-            <Route path='*' element={<NotFound/>}/>
           </Route>
+
+        <Route element={<PatientLayout/>}>
           <Route path='/dashboard' element={<PatientDashboard/>} />
           <Route path='/appointment/book' element={<AppointmentBooking/>} />
           <Route path='/symptom-checker' element={<SymptomChecker/>} />
@@ -45,9 +47,12 @@ function App() {
           <Route path='/medical-records' element={<MedicalRecords/>} />
           <Route path='/prescriptions' element={<Prescriptions/>} />
           <Route path='/notifications' element={<Notifications/>} />
+        </Route>
 
-          <Route path='/doctor-dashboard' element={<DoctorDashboard/>} />
-          <Route path='/admin-dashboard' element={<AdminDashboard/>} />
+        <Route path='/doctor-dashboard' element={<DoctorDashboard/>} />
+        <Route path='/admin-dashboard' element={<AdminDashboard/>} />
+
+        <Route path='*' element={<NotFound/>}/>
         </Routes>
       </BrowserRouter>
     </>
