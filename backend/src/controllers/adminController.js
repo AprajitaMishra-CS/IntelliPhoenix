@@ -140,7 +140,7 @@ export async function getAdminStats(req, res){
 export async function getAllPatients(req, res){
     try {
         const patients = await User.find({ role: "patient" })
-        .select("fullName email phone gender dob")
+        .select("fullName email phone gender dob isActive")
         .sort({ createdAt: -1 });
 
         return res.status(200).json({
@@ -163,7 +163,7 @@ export async function getAllPatients(req, res){
 export async function getAllDoctors(req, res){
     try {
         const doctors = await User.find({ role: "doctor" })
-        .select("fullName email phone gender dob")
+        .select("fullName email phone gender dob isActive")
         .sort({ createdAt: -1 });
 
         return res.status(200).json({
@@ -225,6 +225,66 @@ export async function getAllUsers(req, res) {
         return res.status(500).json({
             success: false,
             message: "Unable to fetch Users.",
+        });
+    }
+}
+
+// deactivate or restore 
+export async function updateUserStatus(req, res) {
+    try {
+        const { isActive } = req.body;
+        const { id } = req.params;
+
+        if(typeof isActive !== "boolean"){
+            return res.status(400).json({
+                success: false,
+                message: "A valid account status is required.",
+            });
+        }
+
+        const user= await User.findById(id);
+
+        if(!user){
+            return res.status(404).json({
+                success: false,
+                message: "User not found.",
+            });
+        }
+
+        if(user.role === "admin"){
+            return res.status(403).json({
+                success: false,
+                message: "Admin accounts cannot be deactivated.",
+            });
+        }
+
+        if(!["patient", "doctor"].includes(user.role)){
+            return res.status(400).json({
+                success: false,
+                message: "invalid user role.",
+            });
+        }
+
+        user.isActive = isActive;
+        await user.save();
+
+        return res.status(200).json({
+            success: true,
+            message: isActive ? "Account restored successfully." : "Account deactivated successfully.",
+            user: {
+                id: user._id,
+                fullName: user.fullName,
+                role: user.role,
+                isActive: user.isActive,
+            },
+        });
+
+    } catch(error) {
+        console.error("Update user status error: ", error.message);
+
+        return res.status(500).json({
+            success: false,
+            message: "Unable to update account status.",
         });
     }
 }

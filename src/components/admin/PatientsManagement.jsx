@@ -7,35 +7,73 @@ const PatientsManagement = () => {
     const [search, setSearch] = useState("");
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
+    const [updatingId, setUpdatingId] = useState(null);
+
+    const fetchPatients = async () => {
+        try{
+            setLoading(true);
+            setError("");
+
+            const response = await fetch(`${API_URL}/admin/patients`, {
+                headers: {
+                    Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+                },
+            });
+
+            const data = await response.json();
+
+            if(!response.ok){
+                throw new Error(data.message || "Failed to fetch patients");
+            }
+
+            setPatients(data.patients || []);
+
+        } catch(error) {
+            setError(error.message);
+        } finally {
+            setLoading(false);
+        }
+    };
 
     useEffect(() => {
-        const fetchPatients = async () => {
-            try{
-                const response = await fetch(`${API_URL}/admin/patients`,
-                    {
-                        headers: {
-                            Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-                        },
-                    }
-                );
-
-                const data = await response.json();
-
-                if(!response.ok){
-                    throw new Error(data.message || "Failed to fetch patients");
-                }
-
-                setPatients(data.patients || []);
-
-            } catch(error) {
-                setError(error.message);
-            } finally {
-                setLoading(false);
-            }
-        };
-
         fetchPatients();
     }, []);
+
+    const handleStatusChange = async (patient) => {
+        const newStatus = patient.isActive === false;
+
+        const confirmed = window.confirm(newStatus ? `Restore ${patient.fullName}'s account?` : `Deactivate ${patient.fullName}'s account? They will no longer be able to log in.`);
+
+        if(!confirmed){
+            return;
+        }
+
+        try {
+            setUpdatingId(patient._id);
+
+            const response = await fetch(`${API_URL}/admin/users/${patient._id}/status`, {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+                },
+                body: JSON.stringify({ isActive: newStatus }),
+            });
+
+            const data = await response.json();
+
+            if(!response.ok){
+                throw new Error(data.message || "Unable to update account.");
+            }
+
+            setPatients((prev) => prev.map((item) => item._id === patient._id ? {...item, isActive: newStatus} : item ));
+
+        } catch(error) {
+            alert(error.message);
+        } finally {
+            setUpdatingId(null);
+        }
+    };
 
     const filteredPatients = patients.filter((patient) => 
         `${patient.fullName} ${patient.email} ${patient.phone || ""}`
@@ -89,37 +127,55 @@ const PatientsManagement = () => {
                                 <th className="px-5 py-4">Phone</th>
                                 <th className="px-5 py-4">Gender</th>
                                 <th className="px-5 py-4">Date of Birth</th>
+                                <th className="px-5 py-4">Status</th>
+                                <th className="px-5 py-4">Action</th>
                             </tr>
                         </thead>
 
                         <tbody className="divide-y divide-gray-100">
                             {filteredPatients.length > 0 ? (
-                                filteredPatients.map((patient) => (
-                                    <tr key={patient._id} className="hover:bg-gray-50">
-                                        <td className="px-5 py-4 font-medium text-gray-800">
-                                            {patient.fullName}
-                                        </td>
+                                filteredPatients.map((patient) => {
+                                    const isActive = patient.isActive !== false;
 
-                                        <td className="px-5 py-4 text-sm text-gray-600">
-                                            {patient.email}
-                                        </td>
+                                    return (
+                                        <tr key={patient._id} className="hover:bg-gray-50">
+                                            <td className="px-5 py-4 font-medium text-gray-800">
+                                                {patient.fullName}
+                                            </td>
 
-                                        <td className="px-5 py-4 text-sm text-gray-600">
-                                            {patient.phone || "N/A"}
-                                        </td>
+                                            <td className="px-5 py-4 text-sm text-gray-600">
+                                                {patient.email}
+                                            </td>
 
-                                        <td className="px-5 py-4 text-sm capitalize text-gray-600">
-                                            {patient.gender || "N/A"}
-                                        </td>
+                                            <td className="px-5 py-4 text-sm text-gray-600">
+                                                {patient.phone || "N/A"}
+                                            </td>
 
-                                        <td className="px-5 py-4 text-sm text-gray-600">
-                                            {patient.dob ? new Date(patient.dob).toLocaleDateString("en-IN") : "N/A"}
-                                        </td>
-                                    </tr>
-                                ))
+                                            <td className="px-5 py-4 text-sm capitalize text-gray-600">
+                                                {patient.gender || "N/A"}
+                                            </td>
+
+                                            <td className="px-5 py-4 text-sm text-gray-600">
+                                                {patient.dob ? new Date(patient.dob).toLocaleDateString("en-IN") : "N/A"}
+                                            </td>
+                                        
+                                            <td className="px-5 py-4">
+                                                <span className={`rounded-full px-3 py-1 text-xs font-semibold ${isActive ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700"}`}>
+                                                    {isActive ? "Active" : "Inactive"}
+                                                </span>
+                                            </td>
+
+                                            <td className="px-5 py-4">
+                                                <button disabled={updatingId === patient._id} onClick={() => handleStatusChange(patient)} className={`rounded-lg px-3 py-2 text-xs font-semibold text-white disabled:opacity-50 ${isActive ? "bg-red-600 hover:bg-red-700": "bg-green-600 hover:bg-green-700"}`}>
+                                                    {updatingId === patient._id ? "Updating..." : isActive ? "Deactivate" : "Restore"}
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    );
+                                })
                             ) : (
                                 <tr>
-                                    <td colSpan="5" className="px-5 py-10 text-center text-gray-500">
+                                    <td colSpan="7" className="px-5 py-10 text-center text-gray-500">
                                         {search ? "No matching patients found." : "No patients registered yet."}
                                     </td>
                                 </tr>

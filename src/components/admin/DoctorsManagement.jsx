@@ -23,6 +23,7 @@ const DoctorsManagement = () => {
     });
     const [formError, setFormError] = useState("");
     const [submitting, setSubmitting] = useState(false);
+    const [updatingId, setUpdatingId] = useState(null);
 
     const fetchDoctors = async () => {
         try{
@@ -100,6 +101,42 @@ const DoctorsManagement = () => {
             setFormError(error.message);
         } finally {
             setSubmitting(false);
+        }
+    };
+
+    const handleStatusChange = async (doctor) => {
+        const newStatus = doctor.isActive === false;
+
+        const confirmed = window.confirm(newStatus ? `Restore ${doctor.fullName}'s account?` : `Deactivate ${doctor.fullName}'s account? They will no longer be able to log in.`);
+
+        if(!confirmed){
+            return;
+        }
+
+        try {
+            setUpdatingId(doctor._id);
+
+            const response = await fetch(`${API_URL}/admin/users/${doctor._id}/status`, {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+                },
+                body: JSON.stringify({ isActive: newStatus }),
+            });
+
+            const data = await response.json();
+
+            if(!response.ok){
+                throw new Error(data.message || "Unable to update account.");
+            }
+
+            setDoctors((prev) => prev.map((item) => item._id === doctor._id ? {...item, isActive: newStatus} : item ));
+
+        } catch(error) {
+            alert(error.message);
+        } finally {
+            setUpdatingId(null);
         }
     };
 
@@ -214,29 +251,45 @@ const DoctorsManagement = () => {
 
                         <tbody className="divide-y divide-gray-100">
                             {filteredDoctors.length > 0 ? (
-                                filteredDoctors.map((doctor) => (
-                                    <tr key={doctor._id} className="hover:bg-gray-50">
-                                        <td className="px-5 py-4 font-medium text-gray-800">
-                                            {doctor.fullName}
-                                        </td>
+                                filteredDoctors.map((doctor) => {
+                                    const isActive = doctor.isActive !== false;
 
-                                        <td className="px-5 py-4 text-sm text-gray-600">
-                                            {doctor.email}
-                                        </td>
+                                    return (
+                                        <tr key={doctor._id} className="hover:bg-gray-50">
+                                            <td className="px-5 py-4 font-medium text-gray-800">
+                                                {doctor.fullName}
+                                            </td>
 
-                                        <td className="px-5 py-4 text-sm text-gray-600">
-                                            {doctor.phone || "N/A"}
-                                        </td>
+                                            <td className="px-5 py-4 text-sm text-gray-600">
+                                                {doctor.email}
+                                            </td>
 
-                                        <td className="px-5 py-4 text-sm capitalize text-gray-600">
-                                            {doctor.gender || "N/A"}
-                                        </td>
+                                            <td className="px-5 py-4 text-sm text-gray-600">
+                                                {doctor.phone || "N/A"}
+                                            </td>
 
-                                        <td className="px-5 py-4 text-sm text-gray-600">
-                                            {doctor.dob ? new Date(doctor.dob).toLocaleDateString("en-IN") : "N/A"}
-                                        </td>
-                                    </tr>
-                                ))
+                                            <td className="px-5 py-4 text-sm capitalize text-gray-600">
+                                                {doctor.gender || "N/A"}
+                                            </td>
+
+                                            <td className="px-5 py-4 text-sm text-gray-600">
+                                                {doctor.dob ? new Date(doctor.dob).toLocaleDateString("en-IN") : "N/A"}
+                                            </td>
+
+                                            <td className="px-5 py-4">
+                                                <span className={`rounded-full px-3 py-1 text-xs font-semibold ${isActive ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700"}`}>
+                                                    {isActive ? "Active" : "Inactive"}
+                                                </span>
+                                            </td>
+
+                                            <td className="px-5 py-4">
+                                                <button disabled={updatingId === doctor._id} onClick={() => handleStatusChange(doctor)} className={`rounded-lg px-3 py-2 text-xs font-semibold text-white disabled:opacity-50 ${isActive ? "bg-red-600 hover:bg-red-700": "bg-green-600 hover:bg-green-700"}`}>
+                                                    {updatingId === doctor._id ? "Updating..." : isActive ? "Deactivate" : "Restore"}
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    );
+                                })
                             ) : (
                                 <tr>
                                     <td colSpan="5" className="px-5 py-10 text-center text-gray-500">

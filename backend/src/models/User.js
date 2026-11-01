@@ -64,6 +64,10 @@ const userSchema = new mongoose.Schema(
             default: "patient",
             required: true,
         }, 
+        isActive: {
+            type: Boolean,
+            default: true,
+        },
         password: {
             type: String,
             required: true,
