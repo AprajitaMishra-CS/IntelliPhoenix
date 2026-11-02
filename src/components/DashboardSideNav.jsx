@@ -1,5 +1,5 @@
 import { LayoutDashboard, CalendarDays, Stethoscope, FileText, Pill, UserRound, Bell, LogOut, } from "lucide-react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const navigation = [
     { label: "Dashboard", icon: LayoutDashboard, path: "/dashboard" },
@@ -13,11 +13,12 @@ const navigation = [
 ];
 
 export default function DashboardSideNav({ sidebarOpen, onClose }) {
+    const navigate = useNavigate();
 
     function handleLogout() {
         sessionStorage.removeItem("token");
         sessionStorage.removeItem("user");
-        window.location.href = "/login";
+        navigate("/login", {replace:true});
     }
 
     return (

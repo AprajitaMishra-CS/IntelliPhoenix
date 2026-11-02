@@ -72,7 +72,7 @@ export default function DoctorDashboard({ initialTab = "Overview" }) {
     function handleLogout() {
         sessionStorage.removeItem("token");
         sessionStorage.removeItem("user");
-        window.location.href = "/login";
+        navigate("/login", {replace:true});
     }
 
     const fetchAppointments = async () => {

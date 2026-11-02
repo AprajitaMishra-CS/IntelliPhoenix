@@ -71,7 +71,7 @@ export default function AdminDashboard({ initialTab = "Overview" }) {
     const handleLogout = () => {
         sessionStorage.removeItem("token");
         sessionStorage.removeItem("user");
-        window.location.href = "/login";
+        navigate("/login", {replace:true});
     };
 
     const statCards = [
