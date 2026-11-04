@@ -137,7 +137,7 @@ export default function AdminDashboard({ initialTab = "Overview" }) {
             <div className="flex min-h-screen">
 
                 {/* Sidebar */}
-                <aside className={`fixed inset-y-0 left-0 z-40 flex w-64 flex-col bg-[#080b16] text-white transition-transform lg:translate-x-0 ${ menuOpen ? "translate-x-0" : "-translate-x-full" }`}>
+                <aside className={`fixed inset-y-0 left-0 z-50 flex w-64 flex-col bg-[#080b16] text-white transition-transform lg:translate-x-0 ${ menuOpen ? "translate-x-0" : "-translate-x-full" }`}>
                     <div className="flex flex-row border-b border-slate-700 px-6 py-7">
                         <img src="/assets/logo.png" alt="IntelliPhoenix" className="h-12 w-12 mr-2 object-contain"/>
                         <div className="flex flex-col">
