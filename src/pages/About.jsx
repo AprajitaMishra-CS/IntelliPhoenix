@@ -5,8 +5,8 @@ export default function About() {
     return (
         <section className="px-12 py-16">
             <div className="flex flex-row">
-                <div>
-                    <h1 className="text-6xl font-bold text-slate-900 flex flex-column">
+                <div className="w-full max-w-7xl max-auto px-4 sm:px-6 lg:px-8">
+                    <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 flex flex-column">
                         About IntelliPhoenix
                     </h1>
                     <p className="mb-4 mt-2 text-slate-600 text-xl">

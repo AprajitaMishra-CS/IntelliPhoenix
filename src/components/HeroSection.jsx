@@ -13,14 +13,14 @@ export default function HeroSection() {
 
     return (
         <div className="flex flex-column">
-            <div className="leading-8">
+            <div className="w-full max-w-full px-4 sm:px-6 lg:px-8 leading-8">
                 <p className="rounded-4xl px-4 py-2 bg-[#C4DBF7] text-md text-navy-900 mb-4 w-fit flex flex-column">
                     <img src="/assets/diamond.png" className="txtDiamond"/>
                     &nbsp;
                     AI-Powered Healthcare
                 </p>
 
-                <h1 className="text-6xl font-bold text-slate-900 flex flex-column">
+                <h1 className="text-4xl font-bold text-slate-900 flex flex-column sm:text-5xl lg:text-6xl">
                     IntelliPh<img src="/assets/logo.png" className="InTextLogo" />enix
                 </h1>
                 <p className="mb-4 mt-2 text-slate-600 text-xl">
@@ -38,11 +38,9 @@ export default function HeroSection() {
                 </p>
 
                 <div className="mb-4">
-                    <Button onClick={handleClick}>
+                    <Button onClick={handleClick} className='mb-2'>
                         Start Your Healthcare Journey &rArr; 
                     </Button>
-
-                    &nbsp;&nbsp;
 
                     <Button variant="secondary">
                         Read More...
