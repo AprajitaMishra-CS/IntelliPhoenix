@@ -1,13 +1,14 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { User2, Mail, Phone, CalendarDays, UserRound, MapPin, Flag, UserCog, Lock, ArrowBigRightDashIcon, Building2 } from "lucide-react";
-
 import AuthCard from "../components/AuthCard";
 import FormField from "../components/FormField";
 import SocialLogin from "../components/SocialLogin";
 import Button from "../components/Button";
 
 export default function Register() {
+    const navigate = useNavigate();
+
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -67,7 +68,8 @@ export default function Register() {
             }
 
             alert("Registration successful !! Please log in.");
-            window.location.href = "/login";
+            
+            navigate("/login", {replace:true});
         } catch(error) {
             console.error("Registration error: ", error);
             alert("Unable to connect to the server. Please try again.");
